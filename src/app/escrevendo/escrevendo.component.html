@@ -1,0 +1,29 @@
+<div id="introAnim" #introAnim [style.margin-top]="mobileMenu ? '18vw' : '10vw'" style="opacity: 0; margin-left: 5vw; min-height: 100%;">
+    <div style="margin: autor;">
+        <label class="currentFont" [style.font-size]="mobileMenu ? '6vw' : '2.1vw'" style="color: #fff; cursor: pointer;">ESCREVENDO</label>
+    </div>
+
+    <!-- MOBILE -->
+    <div style="margin-top: 5vw; width: 95%;">
+        <div *ngFor="let conto of escrevendoList" style="display: flex !important;">
+            <div [style.height]="mobileMenu ? '50vw' : 'auto'" (click)="openInfo(conto)" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; margin-top: 0vw; margin-left: 0;">
+                <img [class]="mobileMenu ? 'capaMobile' : 'capa'" [src]="'./../../assets/images/escrevendo/' + conto.id + '.jpg'">
+            </div>
+
+            <div>
+                <div class="currentFont" [style.font-size]="mobileMenu ? '4.5vw' : '2.1vw'" style="text-align: center; margin: auto; color: white; text-align: left;">
+                    <label>Não escolhemos estar aqui</label>
+                </div>
+                <div class="currentFont" [style.margin-top]="mobileMenu ? '2vw' : '1vw'" [style.height]="mobileMenu ? '25.5vw' : '11.5vw'" [style.max-height]="mobileMenu ? '25.5vw' : '11.5vw'" style="text-align: justify; margin: auto; color: white; overflow-y: scroll; overflow-x: none;">
+                    <label class="currentFont" style="text-align: justify;" [style.font-size]="mobileMenu ? '3vw' : '1.3vw'" >Com apenas onze anos, Rafael, um garoto da pequena cidade de Cachoeira, se descobre com um linfoma. Para tratar o câncer, que ainda é muito recente nos anos 80, o menino é internado no Hospital São Nicolau, localizado na grande e tumultuada cidade de Vernápole. Lá, ele descobrirá a dura realidade daqueles que precisam lutar diariamente por suas vidas, e vai conhecer um grupo de crianças que o ajudará a superar seus medos, mesmo sem saberem que suas doenças não serão o único mal que terão que enfrentar juntas, já que algo muito mais antigo também acaba de despertar.</label>
+                </div>
+                <div class="currentFont" style="text-align: center; margin: auto; color: white;">
+                    <label>50%</label>
+                </div>
+                <div class="progress">
+                    <div class="progress-value"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

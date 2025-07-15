@@ -1,0 +1,68 @@
+<div id="introAnim" #introAnim [style.margin-top]="mobileMenu ? '18vw' : '10vw'" style="opacity: 0; margin-left: 5vw; min-height: 100%;">
+    <div style="margin-bottom: 2vw;">
+        <div>
+            <div style="margin: autor;">
+                <label class="currentFont" [style.font-size]="mobileMenu ? '6vw' : '2vw'" style="color: #fff; font-size: 2.1vw;">CONTATO</label>
+            </div>
+        </div>
+    </div>
+
+    <form *ngIf="!mobileMenu">
+        <div>
+            <div style="float: left; margin-top: 1vw; width: 28vw; margin: auto; margin-right: 2vw;">
+                <input name="name" id="name" required [(ngModel)]="nome" class="inputText currentFont" type="text" style="float: right; font-size: 1.4vw; color: #fff; background: transparent; border: none; border-bottom: 1px solid #fff; margin: auto;">
+                <span style="color: #fff;" class="floating-label currentFont">NOME</span>
+            </div>
+            <div style="float: left; margin-top: 1vw; width: 28vw; margin: auto; margin-right: 2vw;">
+                <input name="Email" id="email" type="email" required [(ngModel)]="email" class="inputText currentFont" style="float: right; font-size: 1.4vw; color: #fff; background: transparent; border: none; border-bottom: 1px solid #fff; margin: auto;">
+                <span style="color: #fff;" class="floating-label currentFont">E-MAIL</span>
+            </div>
+            <div style="float: left; margin-top: 1vw; width: 28vw; margin: auto; margin-right: 2vw;">
+                <input name="Subject" id="subject" required [(ngModel)]="assunto" class="inputText currentFont" type="text" style="float: right; font-size: 1.4vw; color: #fff; background: transparent; border: none; border-bottom: 1px solid #fff; margin: auto;">
+                <span style="color: #fff;" class="floating-label currentFont">ASSUNTO</span>
+            </div>
+        </div>
+        <div>
+            <div style="float: left; width: 89vw; margin: auto; margin-right: 2vw; margin-top: 10vw">
+                <textarea class="currentFont" required [(ngModel)]="mensagem" name="Message" id="message" class="inputTextArea" type="text" style="float: right; font-size: 1.4vw; color: #fff; background: transparent; border: none; border-bottom: 1px solid #fff; margin: auto;"></textarea>
+                <span style="color: #fff;" class="floating-labelTextArea currentFont">MENSAGEM</span>
+            </div>
+        </div>
+        
+        <div style="display: flex; width: 100%;">
+            <div (click)="goInstagram()" style="float: left; cursor: pointer;"> 
+                <img style="width: 3vw; height: auto; margin-top: 3vw;" src="../assets/images/socialIcons/footerInstagram.png"/>
+            </div>
+            <button (click)="sendMail()" type="submit" [class]="(nome !== '' && assunto !== '' && email !== '' && mensagem !== '') ? 'buttonEnviar currentFont' : 'buttonBlock currentFont'" style="float: left; margin: auto; margin-top: 3vw; margin-left: 77vw; font-size: 2.1vw;">ENVIAR</button>    
+        </div>
+    </form>
+
+    <form *ngIf="mobileMenu">
+        <div>
+            <div style="height: 15vw; float: left; margin-top: 1vw; width: 90%; margin: auto; margin-right: 2vw;">
+                <input name="name" id="name" required [(ngModel)]="nome" class="inputText currentFont" type="text" style="width: 100%; float: right; font-size: 4vw; color: #fff; background: transparent; border: none; border-bottom: 1px solid #fff; margin: auto; margin-top: -5vw">
+                <span style="color: #fff;" class="floating-label-name-mobile currentFont">NOME</span>
+            </div>
+            <div style="height: 15vw; float: left; margin-top: 1vw; width: 90%; margin: auto; margin-right: 2vw; margin-top: 5vw; ">
+                <input name="Email" id="email" type="email" required [(ngModel)]="email" name="email" class="inputText currentFont" style="width: 100%; float: right; font-size: 4vw; color: #fff; background: transparent; border: none; border-bottom: 1px solid #fff; margin: auto; margin-top: -5vw">
+                <span style="color: #fff;" class="floating-label-mail-mobile currentFont">E-MAIL</span>
+            </div>
+            <div style="height: 15vw; float: left; margin-top: 1vw; width: 90%; margin: auto; margin-right: 2vw; margin-top: 5vw;">
+                <input name="Subject" id="subject" required [(ngModel)]="assunto" class="inputText currentFont" type="text" style="width: 100%; float: right; font-size: 4vw; color: #fff; background: transparent; border: none; border-bottom: 1px solid #fff; margin: auto; margin-top: -5vw">
+                <span style="color: #fff;" class="floating-label-assunto-mobile currentFont">ASSUNTO</span>
+            </div>
+        </div>
+        <div style="margin-top: 15vw;">
+            <div style="margin-top: 11vw; height: 15vw; float: left; margin-top: 1vw; width: 90%; margin: auto; margin-right: 2vw;">
+                <textarea required [(ngModel)]="mensagem" name="Message" id="message" class="inputTextArea currentFont" type="text" style="height: 30vw; width: 100%; float: right; font-size: 4vw; color: #fff; background: transparent; border: none; border-bottom: 1px solid #fff; margin: auto; margin-top: -3vw;"></textarea>
+                <span style="color: #fff;" class="floating-label-mobile-TextArea currentFont">MENSAGEM</span>
+            </div>
+        </div>
+        <div style="display: flex; width: 100%;">
+            <div (click)="goInstagram()" style="float: left; cursor: pointer;"> 
+                <img style="width: 8vw; height: auto; margin-top: 20vw;" src="../assets/images/socialIcons/footerInstagram.png"/>
+            </div>
+            <button (click)="sendMail()" type="submit" [class]="(nome !== '' && assunto !== '' && email !== '' && mensagem !== '') ? 'buttonEnviar currentFont' : 'buttonBlock currentFont'" style="float: left; margin: auto; margin-top: 20vw; margin-left: 81vw; margin-left: 55vw; font-size: 5.5vw;">ENVIAR</button>    
+        </div>        
+    </form>
+</div>

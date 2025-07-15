@@ -1,0 +1,513 @@
+@keyframes introOpen {
+    0%   {opacity:0;}
+    25%  {opacity:0.1;}
+    50%  {opacity:0.2;}
+    50%  {opacity:0.3;}
+    50%  {opacity:0.4;}
+    50%  {opacity:0.5;}
+    50%  {opacity:0.6;}
+    50%  {opacity:0.7;}
+    50%  {opacity:0.8;}
+    50%  {opacity:0.9;}
+    100% {opacity:1;}
+}
+
+@keyframes configClose {
+    100%   {opacity:0;}
+    90%  {opacity:0.1;}
+    80%  {opacity:0.2;}
+    70%  {opacity:0.3;}
+    60%  {opacity:0.4;}
+    50%  {opacity:0.5;}
+    40%  {opacity:0.6;}
+    30%  {opacity:0.7;}
+    20%  {opacity:0.8;}
+    10%  {opacity:0.9;}
+    0% {opacity:1;}
+}
+
+@keyframes fontMenuOpen {
+    0%   {margin-right: -100vw;}
+    10%  {margin-right: -80vw;}
+    20%  {margin-right: -70vw;}
+    30%  {margin-right: -60vw;}
+    40%  {margin-right: -50vw;}
+    50%  {margin-right: -40vw;}
+    60%  {margin-right: -30vw;}
+    70%  {margin-right: -20vw;}
+    80%  {margin-right: -10vw;}
+    90%  {margin-right: 0vw;}
+    100% {margin-right: 10vw;}
+}
+
+@keyframes fontMenuClose {
+    0%   {margin-right: 10vw;}
+    10%  {margin-right: 0vw;}
+    20%  {margin-right: -10vw;}
+    30%  {margin-right: -20vw;}
+    40%  {margin-right: -30vw;}
+    50%  {margin-right: -40vw;}
+    60%  {margin-right: -50vw;}
+    70%  {margin-right: -60vw;}
+    80%  {margin-right: -70vw;}
+    90%  {margin-right: -80vw;}
+    100% {margin-right: -100vw;}
+}
+
+.configOpen {
+    -webkit-animation: introOpen 0.5s;
+    animation: introOpen 0.5s;
+}
+
+.configClose {
+    -webkit-animation: configClose 0.5s;
+    animation: configClose 0.5s;
+}
+
+.configCloseFix {
+    opacity: 0 !important;
+}
+
+.configOpenFix {
+    opacity: 1 !important;
+}
+
+.clearOpen {
+    -webkit-animation: introOpen 0.5s;
+    animation: introOpen 0.5s;
+}
+
+.clearClose {
+    -webkit-animation: configClose 0.5s;
+    animation: configClose 0.5s;
+}
+
+.clearCloseFix {
+    opacity: 0 !important;
+}
+
+.clearOpenFix {
+    opacity: 1 !important;
+}
+
+.fontMenuClose {
+    -webkit-animation: fontMenuClose 0.5s;
+    animation: fontMenuClose 0.5s;
+}
+
+.fontMenuOpen {
+    -webkit-animation: fontMenuOpen 0.5s;
+    animation: fontMenuOpen 0.5s;
+}
+
+.fontMenuFix {
+    margin-right: 12.5vw;
+    margin-left: 12.5vw;
+}
+
+.fontMenuFixClose {
+    margin-right: -100vw;
+}
+
+.pageDarkMode {
+    background: black;
+}
+
+.pageDayMode {
+    background: white;
+}
+
+.darkModeText {
+    color: white;
+    font-weight: unset !important;
+}
+
+.dayModeText {
+    color: black;
+    font-weight: unset !important;
+}
+
+p {
+    text-align: justify;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    resize: none;
+    border: 0 none;
+    outline: none;
+}
+
+.selector {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+ }
+
+.leituraAnim {
+    -webkit-animation: introOpen 1.5s;
+    animation: introOpen 1.5s;
+}
+.leituraAnimFix {
+    opacity: 1 !important;
+}
+
+.selectFrase {
+    color: red !important;
+}
+
+.tooltip {
+    position: relative;
+    display: contents !important;
+    border-bottom: 1px dotted transparent;
+}
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: transparent;   
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    font-size: 0.8vw;
+    right: 125%;
+    width: 10vw;
+    text-align: right;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.inputTextAreaComentario {
+    font-size: 1.2vw;
+    width: 89vw;
+    height: 15vw;
+    height: auto;
+    box-shadow:none !important;
+  }
+
+/* buttonEnviar */
+.buttonBlock {
+    color: inherit;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  .buttonEnviar {
+    color: white;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  .buttonEnviar:hover {
+    color: rgb(163, 44, 44) !important;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+  }
+
+
+  /* PARA AS CAPAS */
+  
+input {
+    box-shadow:none !important;
+  }
+  
+  .inputText {
+    font-size: 1.2vw;
+    width: 28vw;
+    height: auto;
+  }
+  
+  input:focus ~ .floating-label-pesquisa-mobile,
+  input:not(:focus):valid ~ .floating-label-pesquisa-mobile {
+    top: 30vw;
+    bottom: 10px;
+    font-size: 3.5vw;
+  }
+  
+  .floating-label-pesquisa-mobile {
+    position: absolute;
+    pointer-events: none;
+    top: 20vw;
+    font-size: 6vw;
+    transition: 0.2s ease all;
+  }
+  
+    .intro {
+      -webkit-animation: introOpen 1s;
+      animation: introOpen 1s;
+    }
+    .fix {
+      opacity: 1 !important;
+    }
+  
+  
+    /* IGUAL A HOME */
+    @keyframes openColor {
+      from {background-color: black;}
+      to {background-color: white;}
+  }
+  
+  @keyframes movimentoNext {
+      0%   {left:0vw; top:0px;}
+      50%  {left:-14vw; top:0px;}
+  }
+  
+  @keyframes movimentoBefore {
+      0%   {left:0vw; top:0px;}
+      50%  {left:+14vw; top:0px;}
+  }
+  
+  @keyframes maisOpacity {
+      0%   {opacity:1;      margin-top:0vw;     height: 20vw;}
+      5%   {opacity:0.98;    margin-top:0vw;     height: 20vw;}
+      10%  {opacity:0.95;     margin-top:0vw;     height: 20vw;}
+      15%  {opacity:0.9;      margin-top:0.1vw;   height: 20vw;}
+      20%  {opacity:0.85;     margin-top:0.1vw;   height: 19.9vw;}
+      25%  {opacity:0.8;      margin-top:0.1vw;   height: 19.8vw;}
+      30%  {opacity:0.75;     margin-top:0.2vw;   height: 19.7vw;}
+      35%  {opacity:0.7;      margin-top:0.2vw;   height: 19.6vw;}
+      40%  {opacity:0.65;     margin-top:0.3vw;   height: 19.5vw;}
+      45%  {opacity:0.6;      margin-top:0.3vw;   height: 19.5vw;}
+      50%  {opacity:0.55;     margin-top:0.3vw;   height: 19.5vw;}
+      55%  {opacity:0.5;      margin-top:0.4vw;   height: 19.4vw;}
+      60%  {opacity:0.45;     margin-top:0.4vw;   height: 19.3vw;}
+      65%  {opacity:0.4;      margin-top:0.5vw;   height: 19.2vw;}
+      70%  {opacity:0.35;     margin-top:0.55vw;  height: 19.1vw;}
+      75%  {opacity:0.3;      margin-top:0.55vw;  height: 19vw;}
+      80%  {opacity:0.25;     margin-top:0.6vw;   height: 18.9vw;}
+      85%  {opacity:0.24;     margin-top:0.6vw;   height: 18.8vw;}
+      90%  {opacity:0.23;     margin-top:0.6vw;   height: 18.7vw;}
+      95%  {opacity:0.22;      margin-top:0.6vw;   height: 18.6vw;}
+      100% {opacity:0.21 !important;       margin-top:0.6vw !important;   height: 18.5vw !important;}    
+  }
+  
+  @keyframes menosOpacity {
+      0% {opacity:0.21;       margin-top:0.6vw;   height: 18.5vw;}
+      5%  {opacity:0.22;      margin-top:0.6vw;   height: 18.6vw;}
+      10%  {opacity:0.23;     margin-top:0.6vw;   height: 18.7vw;}
+      15%  {opacity:0.24;     margin-top:0.6vw;   height: 18.8vw;}
+      20%  {opacity:0.25;     margin-top:0.6vw;   height: 18.9vw;}
+      25%  {opacity:0.3;      margin-top:0.55vw;  height: 19vw;}
+      30%  {opacity:0.35;     margin-top:0.55vw;  height: 19.1vw;}
+      35%  {opacity:0.4;      margin-top:0.5vw;   height: 19.2vw;}
+      40%  {opacity:0.45;     margin-top:0.4vw;   height: 19.3vw;}
+      45%  {opacity:0.5;      margin-top:0.4vw;   height: 19.4vw;}
+      50%  {opacity:0.55;     margin-top:0.3vw;   height: 19.5vw;}
+      55%  {opacity:0.6;      margin-top:0.3vw;   height: 19.5vw;}
+      60%  {opacity:0.65;     margin-top:0.3vw;   height: 19.5vw;}
+      65%  {opacity:0.7;      margin-top:0.2vw;   height: 19.6vw;}
+      70%  {opacity:0.75;     margin-top:0.2vw;   height: 19.7vw;}
+      75%  {opacity:0.8;      margin-top:0.1vw;   height: 19.8vw;}
+      80%  {opacity:0.85;     margin-top:0.1vw;   height: 19.9vw;}
+      85%  {opacity:0.9;      margin-top:0.1vw;   height: 20vw;}
+      90%  {opacity:0.95;     margin-top:0vw;     height: 20vw;}
+      95%   {opacity:0.98;    margin-top:0vw;     height: 20vw;}
+      100%   {opacity:1;      margin-top:0vw;     height: 20vw;}
+  }
+  
+  @keyframes hoverCrescer {
+      0%      {   margin-top:0vw;         width: 12vw;    }
+      50%     {   margin-top:-0.3vw;      width: 12.5vw;  }
+      100%    {   margin-top:-0.5vw;      width: 13vw;    }
+  }
+  
+  @keyframes backHover {
+      0%    {   margin-top:-0.5vw;      width: 13vw;    }
+      50%     {   margin-top:-0.3vw;      width: 12.5vw;  }
+      100%      {   margin-top:0vw;         width: 12vw;    }
+  }
+  
+  @keyframes apagar {
+      0%   {opacity:0.2;}
+      25%  {opacity:0.15;}
+      50%  {opacity:0.1;}
+      100% {opacity:0;}
+  }
+  
+  @keyframes aparecendo {
+      0% {opacity:0;}
+      25%  {opacity:0.10;}
+      50%  {opacity:0.15;}
+      75%  {opacity:0.18;}
+      100%   {opacity:0.20;}
+  }
+  
+  @keyframes introExit {
+      0%   {opacity:1;}
+      25%  {opacity:0.9;}
+      50%  {opacity:0.8;}
+      50%  {opacity:0.7;}
+      50%  {opacity:0.6;}
+      50%  {opacity:0.5;}
+      50%  {opacity:0.4;}
+      50%  {opacity:0.3;}
+      50%  {opacity:0.2;}
+      50%  {opacity:0.1;}
+      100% {opacity:0;}
+  }
+  .capa {
+      position: relative;
+      width: 12vw;
+  
+      /* PARA ANIMAÇÃO QUANDO APARECE*/ 
+      border-radius: 5px !important; 
+      animation-name: openColor;
+      animation-duration: 2s;
+  }
+  
+  .capaMobile {
+      position: relative;
+      width: 35vw;
+  
+      /* PARA ANIMAÇÃO QUANDO APARECE*/ 
+      border-radius: 5px !important; 
+      animation-name: openColor;
+      animation-duration: 2s;
+  }
+  
+  .capaMovimentoAvancar {
+      position: relative;
+      -webkit-animation: movimentoNext 1s;
+      animation: movimentoNext 1s;
+  }
+  
+  .capaMovimentoVoltar {
+      position: relative;
+      -webkit-animation: movimentoBefore 1s;
+      animation: movimentoBefore 1s;
+  }
+  
+  .maisOpacityClass {
+      -webkit-animation: maisOpacity 0.5s;
+      animation: maisOpacity 0.5s;
+  
+      opacity:0.21;       
+      margin-top:0.6vw; 
+      height: 18.5vw;
+  }
+  
+  .menosOpacityClass {
+      -webkit-animation: menosOpacity 0.5s;
+      animation: menosOpacity 0.5s;
+  }
+  
+  .apagar {
+      -webkit-animation: apagar 1s;
+      animation: apagar 1s;
+  }
+  
+  .aparecer {
+      -webkit-animation: aparecendo 1s;
+      animation: aparecendo 1s;
+  }
+  
+  .efeitoHoverInverso {
+      -webkit-animation: backHover 0.1s;
+      animation: backHover 0.1s;
+  }
+  
+  .capa:hover {
+      cursor: pointer;
+      -webkit-animation: hoverCrescer 0.1s;
+      animation: hoverCrescer 0.1s;
+      width: 13vw;
+      margin-top:-0.5vw;
+  }
+  
+  /* BOTAO PASSAR */
+  
+  .botaoPassar {
+      width: 5vw;
+      cursor: pointer;
+  }
+  .botaoPassar:hover {
+      cursor: pointer;
+      width: 6vw;
+      margin-top: -0.5vw;
+  }
+  
+  .ficaAberto{
+      opacity: 1 !important;
+  }
+  
+  .botaoPassarDisabled {
+      width: 5vw;
+      opacity: 0.5;
+  }
+  
+  .introCont {
+      -webkit-animation: introOpen 0.5s;
+      animation: introOpen 0.5s;
+  }
+  
+  .welcomeIntro {
+      -webkit-animation: introOpen 1.5s;
+      animation: introOpen 1.5s;
+  }
+  
+  .welcomeExit {
+      -webkit-animation: introExit 1.5s;
+      animation: introExit 1.5s;
+  }
+
+
+
+  
+.introInfo {
+    pointer-events: none;
+    -webkit-animation: 0.5s ease 0s normal forwards 1 fadein;
+    animation: 0.5s ease 0s normal forwards 1 fadein;
+}
+
+@keyframes fadein{
+    0% { opacity:0; }
+    66% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@-webkit-keyframes fadein{
+    0% { opacity:0; }
+    66% { opacity:0; }
+    100% { opacity:1; }
+}
+
+.introInfoDiv {
+    pointer-events: none;
+    -webkit-animation: 0.5s ease 0s normal forwards 1 fadeindiv;
+    animation: 0.5s ease 0s normal forwards 1 fadeindiv;
+}
+@keyframes fadeindiv{
+    0% { opacity:0; }
+    66% { opacity:0; }
+    100% { opacity:0.7; }
+}
+
+@-webkit-keyframes fadeindiv{
+    0% { opacity:0; }
+    66% { opacity:0; }
+    100% { opacity:0.7; }
+}
+
+.capaMobile:hover + img {
+    background-color: red;
+}

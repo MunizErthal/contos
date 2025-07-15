@@ -1,0 +1,34 @@
+<div id="introAnim" #introAnim [style.margin-top]="mobileMenu ? '18vw' : '10vw'" style="opacity: 0; margin-left: 5vw; min-height: 100%;">
+    <div style="margin: autor; margin-bottom: 2vw;">
+        <label class="currentFont" [style.font-size]="mobileMenu ? '6vw' : '2.1vw'" style="color: #fff; cursor: pointer;">CONTOS</label>
+    </div>
+
+        <!-- MOBILE -->
+        <div class="row" *ngIf="mobileMenu" style="margin: auto; margin-left: 0vw; width: 95%;">
+            <!-- ERA ASSIM > display: contents; -->
+            <!-- DEIXEI ASSIM > display: block; margin-bottom: 15vw; -->
+            <div class="col" *ngFor="let conto of contosList" (click)="openInfo(conto)" class="text-center" style="display: block; margin: auto; margin-bottom: 15vw; width: 35vw; height: 50vw; margin-top: 2vw;">
+                <img class="capaMobile" [src]="'./../../assets/images/contos/' + conto.id + '.jpg'" style="margin: auto; margin-top: 2vw; margin-bottom: 8vw;">
+                <div class="introInfoDiv" style="background: black; position: absolute; width: 12vw; height: 12vw; margin-top: -61.2vw; margin-left: 1.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                <img class="introInfo" style="margin-left: -33.7vw; margin-top: 2.3vw; width: 8vw; height: 8vw; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                <label class="introInfo currentFont" style="position: absolute; font-size: 2.8vw; margin-left: -25.5vw; margin-top: 4.2vw; color: white; font-weight: bold;">{{conto.leituras}}</label>
+                <img class="introInfo" style="margin-left: -33.7vw; margin-top: 7.5vw; width: 8vw; height: 8vw; position: absolute;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                <label class="introInfo currentFont" style="position: absolute; font-size: 2.8vw; margin-left: -25.5vw; margin-top: 9.2vw; color: white; font-weight: bold;">{{conto.curtidas}}</label>
+            </div>
+        </div>
+
+        <!-- WEB -->
+        <div id='allContos' #allContos style="margin: auto; width: 95%; text-align: center; margin-left: 5vw;">
+            <div class="row" *ngIf="!mobileMenu" style="margin: auto; width: 95%; text-align: left; height: auto;">
+                <div *ngFor="let conto of contosList" (click)="openInfo(conto)" class="col" style="display: flex; margin: auto; margin-right: 2vw; margin-top: 0vw; margin-bottom: 4vw; margin-left: 0; flex-grow: 0 !important;">
+                    <img [src]="'./../../assets/images/contos/' + conto.id + '.jpg'" style="height: auto;" (mouseleave)="exitCapa('image2')" class="rounded float-start capa">
+                    <div  class="introInfoDiv" [style.width]="conto.leituras > 9 || conto.curtidas > 9 ? '4.7vw' : '4vw'" style="background: black; position: absolute; height: 4vw; margin-top: 0.8vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                    <img  class="introInfo" style="margin-left: 0.3vw; margin-top: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                    <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.7vw; color: white; font-weight: bold;">{{conto.leituras}}</label>
+                    <img  class="introInfo" style="margin-left: 0.3vw; margin-top: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 2.1vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                    <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.4vw; color: white; font-weight: bold;">{{conto.curtidas}}</label>
+                </div>
+            </div>
+        </div>
+</div>
+<app-info [display]="displayInfo" [abrir]="abrir" [objInfo]="objInfo" (onCloseDialog)="closeInfo($event)"></app-info>

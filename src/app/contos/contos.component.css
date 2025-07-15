@@ -1,0 +1,309 @@
+
+input {
+    box-shadow:none !important;
+  }
+  
+  .inputText {
+    font-size: 1.2vw;
+    width: 28vw;
+    height: auto;
+  }
+  
+  input:focus ~ .floating-label-pesquisa-mobile,
+  input:not(:focus):valid ~ .floating-label-pesquisa-mobile {
+    top: 30vw;
+    bottom: 10px;
+    font-size: 3.5vw;
+  }
+  
+  .floating-label-pesquisa-mobile {
+    position: absolute;
+    pointer-events: none;
+    top: 20vw;
+    font-size: 6vw;
+    transition: 0.2s ease all;
+  }
+  
+  @keyframes introOpen {
+      0%   {opacity:0;}
+      25%  {opacity:0.1;}
+      50%  {opacity:0.2;}
+      50%  {opacity:0.3;}
+      50%  {opacity:0.4;}
+      50%  {opacity:0.5;}
+      50%  {opacity:0.6;}
+      50%  {opacity:0.7;}
+      50%  {opacity:0.8;}
+      50%  {opacity:0.9;}
+      100% {opacity:1;}
+    }
+    
+    .intro {
+      -webkit-animation: introOpen 1s;
+      animation: introOpen 1s;
+    }
+    .fix {
+      opacity: 1 !important;
+    }
+  
+  
+    /* IGUAL A HOME */
+    @keyframes openColor {
+      from {background-color: black;}
+      to {background-color: white;}
+  }
+  
+  @keyframes movimentoNext {
+      0%   {left:0vw; top:0px;}
+      50%  {left:-14vw; top:0px;}
+  }
+  
+  @keyframes movimentoBefore {
+      0%   {left:0vw; top:0px;}
+      50%  {left:+14vw; top:0px;}
+  }
+  
+  @keyframes maisOpacity {
+      0%   {opacity:1;      margin-top:0vw;     height: 20vw;}
+      5%   {opacity:0.98;    margin-top:0vw;     height: 20vw;}
+      10%  {opacity:0.95;     margin-top:0vw;     height: 20vw;}
+      15%  {opacity:0.9;      margin-top:0.1vw;   height: 20vw;}
+      20%  {opacity:0.85;     margin-top:0.1vw;   height: 19.9vw;}
+      25%  {opacity:0.8;      margin-top:0.1vw;   height: 19.8vw;}
+      30%  {opacity:0.75;     margin-top:0.2vw;   height: 19.7vw;}
+      35%  {opacity:0.7;      margin-top:0.2vw;   height: 19.6vw;}
+      40%  {opacity:0.65;     margin-top:0.3vw;   height: 19.5vw;}
+      45%  {opacity:0.6;      margin-top:0.3vw;   height: 19.5vw;}
+      50%  {opacity:0.55;     margin-top:0.3vw;   height: 19.5vw;}
+      55%  {opacity:0.5;      margin-top:0.4vw;   height: 19.4vw;}
+      60%  {opacity:0.45;     margin-top:0.4vw;   height: 19.3vw;}
+      65%  {opacity:0.4;      margin-top:0.5vw;   height: 19.2vw;}
+      70%  {opacity:0.35;     margin-top:0.55vw;  height: 19.1vw;}
+      75%  {opacity:0.3;      margin-top:0.55vw;  height: 19vw;}
+      80%  {opacity:0.25;     margin-top:0.6vw;   height: 18.9vw;}
+      85%  {opacity:0.24;     margin-top:0.6vw;   height: 18.8vw;}
+      90%  {opacity:0.23;     margin-top:0.6vw;   height: 18.7vw;}
+      95%  {opacity:0.22;      margin-top:0.6vw;   height: 18.6vw;}
+      100% {opacity:0.21 !important;       margin-top:0.6vw !important;   height: 18.5vw !important;}    
+  }
+  
+  @keyframes menosOpacity {
+      0% {opacity:0.21;       margin-top:0.6vw;   height: 18.5vw;}
+      5%  {opacity:0.22;      margin-top:0.6vw;   height: 18.6vw;}
+      10%  {opacity:0.23;     margin-top:0.6vw;   height: 18.7vw;}
+      15%  {opacity:0.24;     margin-top:0.6vw;   height: 18.8vw;}
+      20%  {opacity:0.25;     margin-top:0.6vw;   height: 18.9vw;}
+      25%  {opacity:0.3;      margin-top:0.55vw;  height: 19vw;}
+      30%  {opacity:0.35;     margin-top:0.55vw;  height: 19.1vw;}
+      35%  {opacity:0.4;      margin-top:0.5vw;   height: 19.2vw;}
+      40%  {opacity:0.45;     margin-top:0.4vw;   height: 19.3vw;}
+      45%  {opacity:0.5;      margin-top:0.4vw;   height: 19.4vw;}
+      50%  {opacity:0.55;     margin-top:0.3vw;   height: 19.5vw;}
+      55%  {opacity:0.6;      margin-top:0.3vw;   height: 19.5vw;}
+      60%  {opacity:0.65;     margin-top:0.3vw;   height: 19.5vw;}
+      65%  {opacity:0.7;      margin-top:0.2vw;   height: 19.6vw;}
+      70%  {opacity:0.75;     margin-top:0.2vw;   height: 19.7vw;}
+      75%  {opacity:0.8;      margin-top:0.1vw;   height: 19.8vw;}
+      80%  {opacity:0.85;     margin-top:0.1vw;   height: 19.9vw;}
+      85%  {opacity:0.9;      margin-top:0.1vw;   height: 20vw;}
+      90%  {opacity:0.95;     margin-top:0vw;     height: 20vw;}
+      95%   {opacity:0.98;    margin-top:0vw;     height: 20vw;}
+      100%   {opacity:1;      margin-top:0vw;     height: 20vw;}
+  }
+  
+  @keyframes hoverCrescer {
+      0%      {   margin-top:0vw;         width: 12vw;    }
+      50%     {   margin-top:-0.3vw;      width: 12.5vw;  }
+      100%    {   margin-top:-0.5vw;      width: 13vw;    }
+  }
+  
+  @keyframes backHover {
+      0%    {   margin-top:-0.5vw;      width: 13vw;    }
+      50%     {   margin-top:-0.3vw;      width: 12.5vw;  }
+      100%      {   margin-top:0vw;         width: 12vw;    }
+  }
+  
+  @keyframes apagar {
+      0%   {opacity:0.2;}
+      25%  {opacity:0.15;}
+      50%  {opacity:0.1;}
+      100% {opacity:0;}
+  }
+  
+  @keyframes aparecendo {
+      0% {opacity:0;}
+      25%  {opacity:0.10;}
+      50%  {opacity:0.15;}
+      75%  {opacity:0.18;}
+      100%   {opacity:0.20;}
+  }
+  
+  @keyframes introExit {
+      0%   {opacity:1;}
+      25%  {opacity:0.9;}
+      50%  {opacity:0.8;}
+      50%  {opacity:0.7;}
+      50%  {opacity:0.6;}
+      50%  {opacity:0.5;}
+      50%  {opacity:0.4;}
+      50%  {opacity:0.3;}
+      50%  {opacity:0.2;}
+      50%  {opacity:0.1;}
+      100% {opacity:0;}
+  }
+  
+  @keyframes introOpen {
+      0%   {opacity:0;}
+      25%  {opacity:0.1;}
+      50%  {opacity:0.2;}
+      50%  {opacity:0.3;}
+      50%  {opacity:0.4;}
+      50%  {opacity:0.5;}
+      50%  {opacity:0.6;}
+      50%  {opacity:0.7;}
+      50%  {opacity:0.8;}
+      50%  {opacity:0.9;}
+      100% {opacity:1;}
+  }
+  
+  .capa {
+      position: relative;
+      width: 12vw;
+  
+      /* PARA ANIMAÇÃO QUANDO APARECE*/ 
+      border-radius: 5px !important; 
+      animation-name: openColor;
+      animation-duration: 2s;
+  }
+  
+  .capaMobile {
+      position: relative;
+      width: 35vw;
+  
+      /* PARA ANIMAÇÃO QUANDO APARECE*/ 
+      border-radius: 5px !important; 
+      animation-name: openColor;
+      animation-duration: 2s;
+  }
+  
+  .capaMovimentoAvancar {
+      position: relative;
+      -webkit-animation: movimentoNext 1s;
+      animation: movimentoNext 1s;
+  }
+  
+  .capaMovimentoVoltar {
+      position: relative;
+      -webkit-animation: movimentoBefore 1s;
+      animation: movimentoBefore 1s;
+  }
+  
+  .maisOpacityClass {
+      -webkit-animation: maisOpacity 0.5s;
+      animation: maisOpacity 0.5s;
+  
+      opacity:0.21;       
+      margin-top:0.6vw; 
+      height: 18.5vw;
+  }
+  
+  .menosOpacityClass {
+      -webkit-animation: menosOpacity 0.5s;
+      animation: menosOpacity 0.5s;
+  }
+  
+  .apagar {
+      -webkit-animation: apagar 1s;
+      animation: apagar 1s;
+  }
+  
+  .aparecer {
+      -webkit-animation: aparecendo 1s;
+      animation: aparecendo 1s;
+  }
+  
+  .efeitoHoverInverso {
+      -webkit-animation: backHover 0.1s;
+      animation: backHover 0.1s;
+  }
+  
+  .capa:hover {
+      cursor: pointer;
+      -webkit-animation: hoverCrescer 0.1s;
+      animation: hoverCrescer 0.1s;
+      width: 13vw;
+      margin-top:-0.5vw;
+  }
+  
+  /* BOTAO PASSAR */
+  
+  .botaoPassar {
+      width: 5vw;
+      cursor: pointer;
+  }
+  .botaoPassar:hover {
+      cursor: pointer;
+      width: 6vw;
+      margin-top: -0.5vw;
+  }
+  
+  .ficaAberto{
+      opacity: 1 !important;
+  }
+  
+  .botaoPassarDisabled {
+      width: 5vw;
+      opacity: 0.5;
+  }
+  
+  .introCont {
+      -webkit-animation: introOpen 0.5s;
+      animation: introOpen 0.5s;
+  }
+  
+  .welcomeIntro {
+      -webkit-animation: introOpen 1.5s;
+      animation: introOpen 1.5s;
+  }
+  
+  .welcomeExit {
+      -webkit-animation: introExit 1.5s;
+      animation: introExit 1.5s;
+  }
+
+
+
+  
+.introInfo {
+    pointer-events: none;
+    -webkit-animation: 0.5s ease 0s normal forwards 1 fadein;
+    animation: 0.5s ease 0s normal forwards 1 fadein;
+}
+@keyframes fadein{
+    0% { opacity:0; }
+    66% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@-webkit-keyframes fadein{
+    0% { opacity:0; }
+    66% { opacity:0; }
+    100% { opacity:1; }
+}
+
+.introInfoDiv {
+    pointer-events: none;
+    -webkit-animation: 0.5s ease 0s normal forwards 1 fadeindiv;
+    animation: 0.5s ease 0s normal forwards 1 fadeindiv;
+}
+@keyframes fadeindiv{
+    0% { opacity:0; }
+    66% { opacity:0; }
+    100% { opacity:0.7; }
+}
+
+@-webkit-keyframes fadeindiv{
+    0% { opacity:0; }
+    66% { opacity:0; }
+    100% { opacity:0.7; }
+}

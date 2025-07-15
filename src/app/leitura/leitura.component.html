@@ -1,0 +1,202 @@
+<div [class]="darkMode ? 'pageDarkMode' : 'pageDayMode'" [style.margin-top]="mobileMenu ? '3vw' : '0vw'" style="z-index: 1; min-height: 100%; display: flex; flex-direction: column;">
+    <div (window:beforeunload)="exitConto()"></div>
+    <div id="leitura" #leitura style="background: transparent; opacity: 0;">
+        <div [class]="darkMode ? 'pageDarkMode' : 'pageDayMode'" style="z-index: 1; margin-left: 5vw; position: fixed; width: 90%; margin-right: 1vw; overflow: auto; display: flex; flex-direction: column; margin-bottom: 0vw;">
+            <label class="currentFont" [class]="darkMode ? 'darkModeText' : 'dayModeText'" [style.margin-top]="mobileMenu ? '12vw' : '8vw'" [style.font-size]="mobileMenu ? '8.5vw' : '2.1vw'" style="background: transparent; width: 100%; list-style-type: none; white-space: nowrap;">{{conto === null ? '' : conto.titulo}}</label>
+            <label *ngIf="!mobileMenu" class="currentFont" [class]="darkMode ? 'darkModeText' : 'dayModeText'" [style.font-size]="mobileMenu ? '2.5vw' : '1vw'" style="background: transparent; width: 100%; list-style-type: none; white-space: nowrap;">{{conto === null ? '' : (conto.dataPost | amDateFormat:'DD/MM/YYYY')}}</label>
+        </div>
+
+        <div [style.background]="darkMode ? 'black' : 'white'" *ngIf="mobileMenu" style="margin-top: 13vw; text-align: left; position: fixed; width: 100%;">
+            <label class="currentFont" [class]="darkMode ? 'darkModeText' : 'dayModeText'" [style.font-size]="mobileMenu ? '2.5vw' : '1vw'" style="z-index: 1; background: transparent; list-style-type: none; white-space: nowrap; margin-top: 14vw; margin-left: 5vw;">{{conto === null ? '' : (conto.dataPost | amDateFormat:'DD/MM/YYYY')}}</label>
+            <img (click)="comentar()" style="margin-top: 13vw; width: 13vw; height: auto; float: right; margin-right: 4vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'chatDark' : 'chatDay') + '.png'" alt="">
+            <img (click)="shareSocial()" style="margin-top: 13vw; width: 13vw; height: auto; float: right; margin-right: 2vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'shareDark' : 'shareDay') + '.png'" alt="">
+            <img (click)="shareQuoteSocial()" style="margin-top: 13vw; width: 13vw; height: auto; float: right; margin-right: 2vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'shareQuoteDark' : 'shareQuoteDay') + '.png'" alt="">
+            
+            <img id="configId" #configId *ngIf="!showMenuFont" (click)="openCloseFontMenu(false)" style="margin-top: 13vw; width: 13vw; height: auto; float: right; margin-right: 2vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'configDark' : 'configDay') + '.png'" alt="">
+            
+            <img id="clearId" #clearId *ngIf="clearMenuShow" (click)="setAllFrasesToWhite()" style="margin-top: 13vw; width: 13vw; height: auto; float: right; margin-right: 2vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'clearDark' : 'clearDay') + '.png'" alt="">
+        </div>
+
+        <!-- PADRÃO -->
+        <div *ngIf="conto !== null && conto.titulo !== 'Tovarishch'" [style.margin-top]="mobileMenu ? '40vw' : '17vw'" [style.width]="mobileMenu ? '90%' : '55%'" [style.margin-bottom]="mobileMenu ? '8vw' : '5vw'" style="margin-left: auto; margin-right: auto; width: 55%; height: 100%; text-align: justify;">
+            <p *ngFor="let paragrafo of conto.texto; let pi = index;" [style.font-size]="fontSize + 'vw'" style="text-align: justify !important;" [class]="darkMode ? 'darkModeText selector' : 'dayModeText selector'">
+                <a [class]="darkMode ? 'darkModeText selector currentFont' : 'dayModeText selector currentFont'" attr.id="frase{{pi + '-' + i}}" (click)="selectFrase(frase, pi + '-' + i)" *ngFor="let frase of paragrafo.match(regex); let i = index;">{{frase}}&nbsp;</a>
+            </p>
+        </div>
+        
+        <!-- TOVARISHCH -->
+        <div *ngIf="conto !== null && conto.titulo === 'Tovarishch'" [style.margin-top]="mobileMenu ? '40vw' : '17vw'" [style.width]="mobileMenu ? '90%' : '55%'" [style.margin-bottom]="mobileMenu ? '8vw' : '5vw'" style="margin-left: auto; margin-right: auto; width: 55%; height: 100%; text-align: justify;">
+            <p *ngFor="let paragrafo of contoEditado; let pi = index;" [style.font-size]="fontSize + 'vw'" style="text-align: justify !important;" [class]="darkMode ? 'darkModeText selector currentFont' : 'dayModeText selector currentFont'">
+                <a *ngFor="let frase of paragrafo; let i = index;">
+                    <a [class]="darkMode ? 'darkModeText selector' : 'dayModeText selector'" attr.id="frase{{pi + '-' + i}}" (click)="selectFrase(frase.frase, pi + '-' + i)">{{frase.frase}}&nbsp;</a>
+                    <label *ngIf="frase.translate !== ''" class="selector currentFont" (click)="changeTraduction(frase)" style="color: lime; font-weight: bold; cursor: pointer; margin-left: 0.5vw;">{{frase.traduzido ? ' ORIGINAL ' : ' TRADUÇÃO '}}&nbsp;</label>
+                </a>
+            </p>
+        </div>
+
+        <!-- WEB -->
+        <!-- MUDAR OPACIDADE APENAS E BLOQUEAR, NÃO REMOVER -->
+        <div *ngIf="!mobileMenu" style="z-index: 1; margin-right: 2vw; position: fixed; top: 25%; right: 0; display: flex; flex-direction: column;">            
+            <div class="tooltip currentFont">
+                <img id="clearId" #clearId (click)="setAllFrasesToWhite()" style="float: right; width: 4vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'clearDark' : 'clearDay') + '.png'" alt="">
+                <span id="clearSpanId" #clearSpanId [style.color]="darkMode ? 'white' : 'black'" class="tooltiptext currentFont" style="top: 1vw !important;">Limpar seleção</span>
+            </div>
+            <div class="tooltip currentFont">
+                <img (click)="shareSocial()" style="float: right; width: 4vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'shareDark' : 'shareDay') + '.png'" alt="">
+                <span [style.color]="darkMode ? 'white' : 'black'" class="tooltiptext currentFont" style="top: 5.5vw !important;">Copiar link de compartilhamento</span>
+            </div>
+            <div class="tooltip currentFont">
+                <img (click)="shareQuoteSocial()" style="float: right; width: 4vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'shareQuoteDark' : 'shareQuoteDay') + '.png'" alt="">
+                <span [style.color]="darkMode ? 'white' : 'black'" class="tooltiptext currentFont" style="top: 9.5vw !important;">Compartilhar parte do texto</span>
+            </div>
+            <div class="tooltip currentFont">
+                <img (click)="comentar()" style="float: right; width: 4vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'chatDark' : 'chatDay') + '.png'" alt="">
+                <span [style.color]="darkMode ? 'white' : 'black'" class="tooltiptext currentFont" style="top: 14vw !important;">Comentar sobre o conto ou parte dele</span>
+            </div>
+            <div class="tooltip currentFont">
+                <img (click)="aumentarFontSize()" style="float: right; width: 4vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'AumentarDark' : 'AumentarDay') + '.png'" alt="">
+                <span [style.color]="darkMode ? 'white' : 'black'" class="tooltiptext currentFont" style="top: 19vw !important;">Aumentar fonte</span>
+            </div>
+            <div class="tooltip currentFont">
+                <img (click)="diminuirFontSize()" style="float: right; width: 4vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'diminuirDark' : 'diminuirDay') + '.png'" alt="">
+                <span [style.color]="darkMode ? 'white' : 'black'" class="tooltiptext currentFont" style="top: 23.5vw !important;">Diminuir fonte</span>
+            </div>
+            <div class="tooltip currentFont">
+                <img (click)="changeMode()" style="float: right; width: 4vw; height: auto;" [src]="'./../../assets/images/icons/' + (darkMode ? 'dayMode' : 'darkMode') + '.png'" alt="">
+                <span [style.color]="darkMode ? 'white' : 'black'" class="tooltiptext currentFont" style="top: 28vw !important;">Alterar para modo {{darkMode ? 'dia' : 'noite'}}</span>
+            </div>            
+        </div>
+
+        <!-- MOBILE -->
+        <div id="fontMenu" #fontMenu *ngIf="mobileMenu" [style.box-shadow]="darkMode ? '0 0 50px grey' : '0 0 50px black'" [style.background]="darkMode ? 'black' : 'white'" style="border-radius: 10vw; width: 75vw; position: fixed; top: 85%; right: 0;">
+            <img (click)="aumentarFontSize()"       style="margin: auto; margin-right: 4vw; float: right; width: 15vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'AumentarDark' : 'AumentarDay') + '.png'" alt="">
+            <img (click)="diminuirFontSize()"       style="margin: auto; margin-right: 2vw; float: right; width: 15vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/icons/' + (darkMode ? 'diminuirDark' : 'diminuirDay') + '.png'" alt="">
+            <img (click)="changeMode()"             style="margin: auto; margin-right: 2vw; float: right; width: 15vw; height: auto;" [src]="'./../../assets/images/icons/' + (darkMode ? 'dayMode' : 'darkMode') + '.png'" alt="">
+            <img (click)="openCloseFontMenu(true)"  style="margin: auto; margin-right: 2vw; float: right; width: 15vw; height: auto;" [src]="'./../../assets/images/icons/' + (darkMode ? 'esconderDark' : 'esconderDay') + '.png'" alt="">
+        </div>
+    </div>
+    <div id="comentarios" #comentarios style="background: transparent;" >
+        <div *ngIf="liberarCurtir && !mobileMenu" [class]="darkMode ? 'pageDarkMode' : 'pageDayMode'" style="z-index: 1; margin-bottom: 2vw; display: flex; width: 100vw;">
+            <label [class]="darkMode ? 'darkModeText currentFont' : 'dayModeText currentFont'" [style.margin-top]="mobileMenu ? '-2vw' : ''" [style.font-size]="mobileMenu ? '8.5vw' : '1.5vw'" style="background: transparent;font-size: 1.5vw; width: 92vw; text-align: center;">Gostou? Deixe seu Like!</label>
+            <img id="curtirId" #curtirId (click)="curtir()" style="z-index: 0; float: right; width: 4vw; height: auto; margin-bottom: 0.5vw; margin-top: -1vw; margin-left: -37vw; text-align: center;" [src]="'./../../assets/images/icons/' + (darkMode ? 'likeDark' : 'likeDay') + '.png'" alt="">
+        </div>
+        <div *ngIf="liberarCurtir && mobileMenu" [class]="darkMode ? 'pageDarkMode' : 'pageDayMode'" style="z-index: 1; margin-bottom: 2vw; width: 100vw;">
+            <label [class]="darkMode ? 'darkModeText currentFont' : 'dayModeText currentFont'" [style.margin-top]="mobileMenu ? '-2vw' : ''" [style.font-size]="mobileMenu ? '8.5vw' : '1.5vw'" style="background: transparent;font-size: 1.5vw; width: 100vw; text-align: center;">Gostou?</label>
+            <label [class]="darkMode ? 'darkModeText currentFont' : 'dayModeText currentFont'" [style.margin-top]="mobileMenu ? '-2vw' : ''" [style.font-size]="mobileMenu ? '8.5vw' : '1.5vw'" style="background: transparent;font-size: 1.5vw; width: 100vw; text-align: center;">Deixe seu Like!</label>
+            <img id="curtirId" #curtirId (click)="curtir()" style="width: 20vw; margin-bottom: 5vw; height: auto; text-align: center; margin: auto; display: block;" [src]="'./../../assets/images/icons/' + (darkMode ? 'likeDark' : 'likeDay') + '.png'" alt="">
+        </div>
+
+        <div *ngIf="!liberarCurtir" [class]="darkMode ? 'pageDarkMode' : 'pageDayMode'" style="z-index: 1; margin-bottom: 2vw; display: flex; width: 100vw;">
+            <label [class]="darkMode ? 'darkModeText currentFont' : 'dayModeText currentFont'" [style.margin-top]="mobileMenu ? '-2vw' : ''" [style.font-size]="mobileMenu ? '8.5vw' : '1.5vw'" style="background: transparent;font-size: 1.5vw; width: 100vw; text-align: center;">Muito Obrigado!</label>
+        </div>
+
+        <!-- LINK DE BLOG -->
+        <div *ngIf="conto !== null && conto !== undefined && conto.blogLink && conto.blogLink.length > 0 && conto.blogLink[0] != ''" [class]="darkMode ? 'pageDarkMode' : 'pageDayMode'" style="z-index: 1; text-align: left; margin-left: 5vw; width: 90%;">
+            <label [class]="darkMode ? 'darkModeText currentFont' : 'dayModeText currentFont'" [style.margin-top]="mobileMenu ? '-2vw' : ''" [style.font-size]="mobileMenu ? '8.5vw' : '2.2vw'" style="background: transparent; width: 100%;">BLOGS RELACIONADOS</label>
+            
+            <!-- MOBILE -->
+            <div *ngIf="mobileMenu" style="display: flex;">
+                <div style="margin-top: 1.5vw; display: flex; width: 95%; overflow-x: scroll;">
+                    <div *ngFor="let miniconto of blogsLinks" (click)="openInfo(miniconto)" class="text-center" style="display: flex; margin: auto; margin-right: 2vw; height: auto; margin-top: 0vw; margin-left: 0vw; min-width: 35vw; margin-bottom: 4vw;">
+                        <img class="capaMobile" [src]="'./../../assets/images/blogs/' + miniconto.id + '.jpg'">
+                        <div class="introInfoDiv" style="background: black; position: relative; width: 12vw; height: 12vw; margin-top: 0.8vw; margin-left: -34vw; border-radius: 7px; opacity: 0.7;"></div>
+                        <img class="introInfo" style="margin-left: -12vw; width: 8vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                        <label class="introInfo currentFont" style="position: relative; margin-left: 0vw; margin-top: 1.8vw; font-size: 2.8vw; color: white; font-weight: bold;">{{miniconto.leituras}}</label>
+                        <img class="introInfo" style="margin-left: 15.5vw; margin-left: -10vw; margin-top: 5vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                        <label class="introInfo currentFont" style="position: relative; font-size: 2.8vw; margin-left: 0.3vw; margin-top: 6.8vw; color: white; font-weight: bold;">{{miniconto.curtidas}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WEB -->
+            <div *ngIf="!mobileMenu" class="row" style="margin: auto; width: 95%; text-align: left; height: auto;">
+                <div *ngFor="let conto of blogsLinks" (click)="openInfo(conto)" class="col" style="display: flex; margin: auto; margin-right: 2vw; margin-top: 1vw; margin-bottom: 2vw; margin-left: 0; flex-grow: 0 !important;">
+                    <img [src]="'./../../assets/images/blogs/' + conto.id + '.jpg'" style="height: auto;" (mouseleave)="exitCapa('image2')" class="rounded float-start capa">
+                    <div  class="introInfoDiv" [style.width]="conto.leituras > 9 || conto.curtidas > 9 ? '4.7vw' : '4vw'" style="background: black; position: absolute; height: 4vw; margin-top: 0.8vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                    <img  class="introInfo" style="margin-left: 0.3vw; margin-top: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                    <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.7vw; color: white; font-weight: bold;">{{conto.leituras}}</label>
+                    <img  class="introInfo" style="margin-left: 0.3vw; margin-top: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 2.1vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                    <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.4vw; color: white; font-weight: bold;">{{conto.curtidas}}</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- LINK DE CONTO -->
+        <div *ngIf="conto !== null && conto !== undefined && ((conto.contoLink && conto.contoLink.length > 0 && conto.contoLink[0] != '') || (conto.miniLink && conto.miniLink.length > 0 && conto.miniLink[0] != ''))" [class]="darkMode ? 'pageDarkMode' : 'pageDayMode'" style="z-index: 1; text-align: left; margin-left: 5vw; width: 90%;">
+            <label [class]="darkMode ? 'darkModeText currentFont' : 'dayModeText currentFont'" [style.margin-top]="mobileMenu ? '-2vw' : ''" [style.font-size]="mobileMenu ? '8.5vw' : '2.2vw'" style="background: transparent; width: 100%;">CONTOS RELACIONADOS</label>
+            
+            <!-- MOBILE -->
+            <div *ngIf="mobileMenu" style="margin-top: 1.5vw; display: flex; width: 95%; overflow-x: scroll;">
+                <div *ngFor="let miniconto of contosLinks" (click)="openInfo(miniconto)" class="text-center" style="display: flex; margin: auto; margin-right: 2vw; height: auto; margin-top: 0vw; margin-left: 0vw; min-width: 35vw; margin-bottom: 4vw;">
+                    <img class="capaMobile" [src]="'./../../assets/images/contos/' + miniconto.id + '.jpg'">
+                    <div class="introInfoDiv" style="background: black; position: relative; width: 12vw; height: 12vw; margin-top: 0.8vw; margin-left: -34vw; border-radius: 7px; opacity: 0.7;"></div>
+                    <img class="introInfo" style="margin-left: -12vw; width: 8vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                    <label class="introInfo currentFont" style="position: relative; margin-left: 0vw; margin-top: 1.8vw; font-size: 2.8vw; color: white; font-weight: bold;">{{miniconto.leituras}}</label>
+                    <img class="introInfo" style="margin-left: 15.5vw; margin-left: -10vw; margin-top: 5vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                    <label class="introInfo currentFont" style="position: relative; font-size: 2.8vw; margin-left: 0.3vw; margin-top: 6.8vw; color: white; font-weight: bold;">{{miniconto.curtidas}}</label>
+                </div>
+                <div *ngFor="let miniconto of miniLinks" (click)="openInfo(miniconto)" class="text-center" style="display: flex; margin: auto; margin-right: 2vw; height: auto; margin-top: 0vw; margin-left: 0vw; min-width: 35vw; margin-bottom: 4vw;">
+                    <img class="capaMobile" [src]="'./../../assets/images/minicontos/' + miniconto.id + '.jpg'">
+                    <div class="introInfoDiv" style="background: black; position: relative; width: 12vw; height: 12vw; margin-top: 0.8vw; margin-left: -34vw; border-radius: 7px; opacity: 0.7;"></div>
+                    <img class="introInfo" style="margin-left: -12vw; width: 8vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                    <label class="introInfo currentFont" style="position: relative; margin-left: 0vw; margin-top: 1.8vw; font-size: 2.8vw; color: white; font-weight: bold;">{{miniconto.leituras}}</label>
+                    <img class="introInfo" style="margin-left: 15.5vw; margin-left: -10vw; margin-top: 5vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                    <label class="introInfo currentFont" style="position: relative; font-size: 2.8vw; margin-left: 0.3vw; margin-top: 6.8vw; color: white; font-weight: bold;">{{miniconto.curtidas}}</label>
+                </div>
+            </div>
+
+            <!-- WEB -->
+            <div class="row" *ngIf="!mobileMenu" style="margin: auto; width: 95%; text-align: left; height: auto;">
+                <div *ngFor="let conto of contosLinks" (click)="openInfo(conto)" class="col" style="display: flex; margin: auto; margin-right: 2vw; margin-top: 1vw; margin-bottom: 2vw; margin-left: 0; flex-grow: 0 !important;">
+                    <img [src]="'./../../assets/images/contos/' + conto.id + '.jpg'" style="height: auto;" (mouseleave)="exitCapa('image2')" class="rounded float-start capa">
+                    <div  class="introInfoDiv" [style.width]="conto.leituras > 9 || conto.curtidas > 9 ? '4.7vw' : '4vw'" style="background: black; position: absolute; height: 4vw; margin-top: 0.8vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                    <img  class="introInfo" style="margin-left: 0.3vw; margin-top: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                    <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.7vw; color: white; font-weight: bold;">{{conto.leituras}}</label>
+                    <img  class="introInfo" style="margin-left: 0.3vw; margin-top: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 2.1vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                    <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.4vw; color: white; font-weight: bold;">{{conto.curtidas}}</label>
+                </div>
+                <div *ngFor="let conto of miniLinks" (click)="openInfo(conto)" class="col" style="display: flex; margin: auto; margin-right: 2vw; margin-top: 1vw; margin-bottom: 2vw; margin-left: 0; flex-grow: 0 !important;">
+                    <img [src]="'./../../assets/images/minicontos/' + conto.id + '.jpg'" style="height: auto;" (mouseleave)="exitCapa('image2')" class="rounded float-start capa">
+                    <div  class="introInfoDiv" [style.width]="conto.leituras > 9 || conto.curtidas > 9 ? '4.7vw' : '4vw'" style="background: black; position: absolute; height: 4vw; margin-top: 0.8vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                    <img  class="introInfo" style="margin-left: 0.3vw; margin-top: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                    <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.7vw; color: white; font-weight: bold;">{{conto.leituras}}</label>
+                    <img  class="introInfo" style="margin-left: 0.3vw; margin-top: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 2.1vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                    <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.4vw; color: white; font-weight: bold;">{{conto.curtidas}}</label>
+                </div>
+            </div>
+        </div>
+
+        <div [class]="darkMode ? 'pageDarkMode' : 'pageDayMode'" style="z-index: 1; margin-bottom: 2vw; text-align: left; margin-left: 5vw; width: 90%; display: flex;">
+            <label [class]="darkMode ? 'darkModeText currentFont' : 'dayModeText currentFont'" [style.margin-top]="mobileMenu ? '-2vw' : ''" [style.font-size]="mobileMenu ? '8.5vw' : '2.2vw'" style="background: transparent;">COMENTÁRIOS</label>
+            <button [style.color]="darkMode ? 'white' : 'black'" *ngIf="!this.loadComentario && comentariosList.length <= 0" (click)="loadComentarios()" type="submit" class="buttonEnviar currentFont" style="float: left;" [style.font-size]="mobileMenu ? '3vw' : '1.1vw'" >CARREGAR</button>    
+            <button [style.color]="darkMode ? 'white' : 'black'" *ngIf="!this.loadComentario && comentariosList.length > 0" (click)="esconderComentarios()" type="submit" class="buttonEnviar currentFont" style="float: left;" [style.font-size]="mobileMenu ? '3vw' : '1.1vw'">{{esconde ? 'MOSTRAR' : 'ESCONDER'}}</button>    
+            <label *ngIf="this.loadComentario" [style.margin-left]="mobileMenu ? '3vw' : '1vw'" style="margin-top: 0.5vw;">
+                <img [src]="'./../../assets/images/icons/loading.gif'" [style.width]="mobileMenu ? '6vw' : '2vw'" style="height: auto;">
+            </label>
+        </div>
+        <div *ngIf="comentariosList.length > 0 && !esconde" [style.width]="mobileMenu ? '85%' : '70%'" style="margin: auto; height: auto; text-align: justify; margin-top: 2vw; margin-bottom: 5vw;">
+            <div *ngFor="let comentario of comentariosList" [style.height]="mobileMenu ? 'auto' : ''" [style.border-color]="darkMode ? 'white' : 'black'"  style="border: solid 1px; padding: 2vw; border-radius: 7px; margin-top: 2vw;">
+                <div style="display: table;">
+                    <label class="currentFont" [style.color]="darkMode ? 'white' : 'black'" [style.font-size]="mobileMenu ? '5vw' : '1.9vw'" style="float: left; margin-right: 1vw;">{{comentario.nome}}</label>
+                </div>
+                <div *ngIf="comentario.frase !== ''" [style.height]="mobileMenu ? 'auto' : '4vw'">
+                    <div [style.height]="mobileMenu ? 'auto' : '4vw'" style="width: 100%; margin: auto;">
+                        <textarea class="currentFont" [style.height]="mobileMenu ? 'auto' : '4vw'" readonly name="Message" id="message" class="selector inputTextAreaComentario" type="text" style="font-weight: bold; width: 100%; color: darkred; text-align: center; resize: none; background: transparent; border: none;" [style.font-size]="mobileMenu ? '3vw' : '1.3vw'">{{'"' + comentario.frase + '"'}}</textarea>
+                    </div>
+                </div>
+                <div [style.height]="mobileMenu ? 'auto' : '4vw'" [style.margin-top]="comentario.frase === '' ? (mobileMenu ? '-8vw' : '') : ''">
+                    <div [style.height]="mobileMenu ? 'auto' : '4vw'" [style.margin-top]="mobileMenu ? '7vw' : '1vw'" style="width: 100%; margin: auto;">
+                        <textarea class="currentFont" [style.height]="mobileMenu ? 'auto' : '4vw'" readonly [style.color]="darkMode ? 'white' : 'black'" name="Message" id="message" class="selector inputTextAreaComentario" type="text" style="width: 100%; resize: none; background: transparent; border: none;" [style.font-size]="mobileMenu ? '3vw' : '1.3vw'">{{comentario.comentario}}</textarea>                        
+                    </div>
+                </div>
+                <div style="margin: auto; display: flow-root;" [style.margin-right]="mobileMenu ? '2vw' : ''">
+                    <label class="currentFont" [style.color]="darkMode ? 'white' : 'black'" [style.font-size]="mobileMenu ? '2.5vw' : '1.1vw'" style="float: right;">{{comentario.dateNow | amDateFormat:'DD/MM/YYYY hh:mm'}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-share-screen [display]="displayShare"      [darkMode]="darkMode" [contoId]="conto !== null && conto !== undefined ? conto.capa.id : '-1'" [textSelect]="textSelect" (onCloseDialog)="closeShare($event)"></app-share-screen>
+<app-comentar     [display]="displayComentar"   [darkMode]="darkMode" [contoId]="conto !== null && conto !== undefined ? conto.capa.id : '-1'" [textSelect]="textSelect" (onCloseDialog)="closeComentar($event)" [contoTitulo]="conto !== null && conto !== undefined ? conto.capa.titulo : '-1'" [contoType]="contoType === 'null' || contoType === undefined ? '-1' : contoType"></app-comentar>
+<app-info [display]="displayInfo" [abrir]="abrir" [objInfo]="objInfo" (onCloseDialog)="closeInfo($event)"></app-info>

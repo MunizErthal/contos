@@ -1,0 +1,49 @@
+.profilePic {
+    width: 15vw;
+    margin-top: 2vw;
+    height: auto;
+    border-radius: 50%;
+    margin-left: 10vw;
+    content: url('./../../assets/images/fernando.jpg');
+}
+
+.profilePicMobile {
+    margin: auto; 
+    width: 35vw;
+    margin-top: 5vw;
+    height: auto;
+    border-radius: 50%;
+    float: right;
+    content: url('./../../assets/images/fernando.jpg');
+}
+
+.profilePicPIADA:hover {
+    width: 15vw;
+    margin-top: 2vw;
+    height: auto;
+    border-radius: 50%;
+    margin-left: 10vw;
+    /*content: url('./../../assets/images/noivaciumenta.jpg');*/
+}
+
+@keyframes introOpen {
+    0%   {opacity:0;}
+    25%  {opacity:0.1;}
+    50%  {opacity:0.2;}
+    50%  {opacity:0.3;}
+    50%  {opacity:0.4;}
+    50%  {opacity:0.5;}
+    50%  {opacity:0.6;}
+    50%  {opacity:0.7;}
+    50%  {opacity:0.8;}
+    50%  {opacity:0.9;}
+    100% {opacity:1;}
+}
+
+.intro {
+    -webkit-animation: introOpen 1s;
+    animation: introOpen 1s;
+}
+.fix {
+    opacity: 1 !important;
+}

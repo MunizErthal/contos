@@ -1,0 +1,63 @@
+<nav (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" id="navbar" style="display: flex; background-color: #ffffff;" class="navbar fixed-top navbar-light bg-light animClose">
+    <div (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" class="navMin" id="navPt1" style="display: block; float: left; min-height: 6vw !important;" [style.margin-top]="mobileMenu ? 'auto': ''">
+        <div (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)">
+            <a (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" class="currentFont navbar-brand" [style.font-size]="mobileMenu ? '4.8vw' : '1.8vw'" style="float: right; cursor: pointer; color: black; " [style.padding-top]="mobileMenu ? '' : '0'" ngxScrollTo [ngxScrollToOffset]="-9999" (click)="changeMenu(1)">FERNANDO MUNIZ ERTHAL</a>
+        </div>
+        <div *ngIf="showMenus && !mobileMenu">
+            <a class="navbar-brand opcao animClose currentFont" style="margin-left: 1vw; font-size: 1.3vw;" id="contosMenu" (click)="goContos()" #contosMenu>CONTOS</a>
+            <a class="navbar-brand opcao animClose currentFont" style="font-size: 1.3vw;" ngxScrollTo id="minicontosMenu" (click)="goMinicontos()" #minicontosMenu>MINICONTOS</a>
+            <a class="navbar-brand opcao animClose currentFont" style="font-size: 1.3vw;" ngxScrollTo id="blogMenu" (click)="goBlog()" #blogMenu>BLOG</a>
+        </div>
+    </div>
+    <div *ngIf="!mobileMenu" id="navPt2" style="margin: auto; margin-right: 0vw; min-height: 6vw !important;">
+        <div style="margin: auto; margin-right: 0vw;">
+            <a (click)="changeMenu(4)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="escrevendoMenu" ngxScrollTo [ngxScrollToOffset]="-9999" #escrevendoMenu>ESCREVENDO</a>
+            <a (click)="changeMenu(3)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="contatoMenu" ngxScrollTo [ngxScrollToOffset]="-9999" #contatoMenu>CONTATO</a>
+            <a (click)="changeMenu(2)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="sobreMenu" ngxScrollTo [ngxScrollToOffset]="-9999" #sobreMenu>SOBRE</a>
+            <a (click)="changeMenu(1)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="homeMenu" ngxScrollTo [ngxScrollToOffset]="-9999" #homeMenu>HOME</a>
+        </div>
+        <div *ngIf="showMenus" (click)="changeMenu(5)" ngxScrollTo [ngxScrollToOffset]="-9999" style="float: left; margin-top: 1vw; width: 97%;">
+            <input id="pesquisarInputId" required (input)="changeSearchParam()" (focusout)="exitSearchParam()" [(ngModel)]="searchParam" class="currentFont inputText animClose" type="text" name="searchParam" style="float: right; font-size: 1.3vw; color: black; background: transparent; border: none; border-bottom: 1px solid #000000; margin: auto;">
+            <span id="pesquisarId" style="color: black; font-size: 1.3vw;" class="currentFont floating-label animClose">PESQUISAR</span>
+        </div>
+    </div>
+
+    <!-- MENU MOBILE -->
+    <div class="gesture__zone" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" *ngIf="mobileMenu" id="menuToggle">
+        <input id="buttonCloseMenu" (change)="verifyMenu()" type="checkbox" />
+
+        <span></span>
+        <span></span>
+        <span></span>
+        
+        <ul #menu id="menu">
+            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(1)" ngxScrollTo [ngxScrollToOffset]="-9999"><li style="font-size: 4vw;" id="homeMenu" #homeMenu>HOME</li></a>
+            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(2)" ngxScrollTo [ngxScrollToOffset]="-9999"><li style="font-size: 4vw;" id="sobreMenu" #sobreMenu>SOBRE</li></a>
+            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(3)" ngxScrollTo [ngxScrollToOffset]="-9999"><li style="font-size: 4vw;" id="contatoMenu" #contatoMenu>CONTATO</li></a>
+            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(4)" ngxScrollTo [ngxScrollToOffset]="-9999"><li style="font-size: 4vw;" id="escrevendoMenu" #escrevendoMenu>ESCREVENDO</li></a>
+            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(5)" ngxScrollTo [ngxScrollToOffset]="-9999"><li style="font-size: 4vw;" id="pesquisarMenu" #pesquisarMenu>PESQUISAR</li></a>
+        </ul>
+    </div>
+</nav>
+
+<div (scroll)="onScroll($event)"></div>
+<router-outlet></router-outlet>
+
+<div (click)="closeMenuNav()" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" *ngIf="mobileMenu" id="openSwipeDiv" #openSwipeDiv style="height: 100%; background-color: transparent; width: 5vw; min-height: 100%; position: fixed; min-width: 5vw; right: 0; top: 0;"></div>
+
+<div *ngIf="router.url.includes('/leitura')" class="footer currentFont" style="margin: auto; text-align: left; position: fixed;">
+    <div [style.width]="scrollLocation + '%'" id="line" style="min-height: 5px !important; background: white;"></div>
+</div>
+
+<div [style.position]="router.url.includes('/leitura') ? '' : 'fixed'" *ngIf="!mobileMenu" class="footer currentFont" style="margin: auto; text-align: left; z-index: 20; display: flex;">
+    <p [style.margin-bottom]="router.url.includes('/leitura') ? '0.5vw' : 'auto'" style="margin: auto; margin-left: 1vw;"> © 2021 <a style="color: white; text-decoration: none;" href="https://linktr.ee/fernandoMunizErthal">Fernando Muniz Erthal</a> - Todos os Direitos Reservados</p>
+    <div (click)="goInstagram()" style="margin-right: 1vw; padding-bottom: 0.2vw; cursor: pointer;"> 
+        <img [style.margin-bottom]="router.url.includes('/leitura') ? '0.2vw' : 'auto'" style="width: 1.3vw; height: auto;" src="../assets/images/socialIcons/footerInstagram.png"/>
+    </div>
+</div>
+<div [style.height]="router.url.includes('/leitura') ? '5vh' : '4vh'" [style.position]="router.url.includes('/leitura') ? '' : 'fixed'" *ngIf="mobileMenu" class="footer currentFont" style="margin: auto; text-align: left; z-index: 20; display: flex;">
+    <p [style.margin-top]="router.url.includes('/leitura') ? '1vw' : 'auto'" style="font-size: 3vw; margin: auto; margin-left: 1vw;"> © 2021 <a style="color: white; text-decoration: none;" href="https://linktr.ee/fernandoMunizErthal">Fernando Muniz Erthal</a> - Todos os Direitos Reservados</p>
+    <div [style.margin-top]="router.url.includes('/leitura') ? '0.8vw' : 'auto'" (click)="goInstagram()" style="margin: auto; margin-right: 1vw; cursor: pointer;"> 
+        <img style="width: 6vw; height: auto;" src="../assets/images/socialIcons/footerInstagram.png"/>
+    </div>
+</div>

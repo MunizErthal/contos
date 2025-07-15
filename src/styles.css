@@ -1,0 +1,51 @@
+/* 
+        FONTES: 
+'Encode Sans', sans-serif;
+'Encode Sans Expanded', sans-serif;
+*/
+.currentFont {
+  font-family: 'Encode Sans Expanded', sans-serif !important;
+}
+
+/* swal */
+.swal2-html-container {
+  color: white !important;
+  font-family: 'Encode Sans Expanded', sans-serif;
+}
+.swal2-confirm {
+  background-color: white !important;;
+  color: black !important;
+  font-family: 'Encode Sans Expanded', sans-serif;
+}
+.swal2-cancel {
+  background-color: black !important;;
+  color: white !important;
+  font-family: 'Encode Sans Expanded', sans-serif;
+}
+.swal2-title {
+  font-family: 'Encode Sans Expanded', sans-serif;
+}
+
+html{
+  height: 100% !important;
+}
+
+/* You can add global styles to this file, and also import other style files */
+body {
+    height: 100% !important;
+    margin: 0;
+    overflow-x: hidden !important;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    background: black;
+    background-image: url('./assets/images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden !important;
+    background-attachment: fixed;
+    background-position: center;
+}

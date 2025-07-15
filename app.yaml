@@ -1,0 +1,83 @@
+# [START runtime]
+runtime: nodejs10
+handlers:  
+- url: /(.+\.js)
+  static_files: dist/escritor/\1
+  upload: dist/escritor/(.+\.js)
+
+- url: /(.+\.css)
+  static_files: dist/escritor/\1
+  upload: dist/escritor/(.+\.css)
+
+- url: /(.+\.png)
+  static_files: dist/escritor/\1
+  upload: dist/escritor/(.+\.png)
+
+- url: /(.+\.gif)
+  static_files: dist/escritor/\1
+  upload: dist/escritor/(.+\.gif)
+
+- url: /(.+\.jpg)
+  static_files: dist/escritor/\1
+  upload: dist/escritor/(.+\.jpg)
+
+- url: /(.+\.svg)
+  static_files: dist/escritor/\1
+  upload: dist/escritor/(.+\.svg)
+
+- url: /favicon.ico
+  static_files: dist/escritor/favicon.ico
+  upload: dist/escritor/favicon.ico
+  
+- url: /(.+\.json)
+  static_files: dist/escritor/\1
+  upload: dist/escritor/(.+\.json)
+
+- url: /(.+)
+  static_files: dist/escritor/index.html
+  upload: dist/escritor/index.html
+  secure: always
+  redirect_http_response_code: 301
+
+- url: /
+  static_files: dist/escritor/index.html
+  upload: dist/escritor/index.html
+  secure: always
+  redirect_http_response_code: 301
+  
+- url: /dist/escritor/assets/fonts/(.*\.ttf)
+  static_files: dist/escritor/assets/fonts/\1
+  upload: dist/escritor/assets/fonts/(.*\.ttf)
+  mime_type: application/x-font-ttf
+
+- url: /dist/escritor/assets/fonts/(.*\.woff)
+  static_files: dist/escritor/assets/fonts/\1
+  upload: dist/escritor/assets/fonts/(.*\.woff)
+  mime_type: application/font-woff
+
+- url: /dist/escritor/assets/fonts/(.*\.eot)
+  static_files: dist/escritor/assets/fonts/\1
+  upload: dist/escritor/assets/fonts/(.*\.eot)
+  mime_type: application/font-woff
+
+- url: /(.*\.svg)
+  static_files: dist/escritor/assets/fonts/\1
+  upload: dist/escritor/assets/fonts/(.*\.svg)
+  mime_type: image/svg+xml
+
+- url: /(.*\.eot)
+  static_files: dist/escritor/assets/fonts/\1
+  upload: dist/escritor/assets/fonts/(.*\.eot)
+  mime_type: application/vnd.ms-fontobject
+
+- url: /(.*\.ttf)
+  static_files: dist/escritor/assets/fonts/\1
+  upload: dist/escritor/assets/fonts/(.*\.ttf)
+  mime_type: application/x-font-ttf
+
+- url: /(.*\.otf)
+  static_files: dist/escritor/assets/fonts/\1
+  upload: dist/escritor/assets/fonts/(.*\.otf)
+  mime_type: application/x-font-otf
+
+# [END runtime]

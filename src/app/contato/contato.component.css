@@ -1,0 +1,162 @@
+textarea:focus, input:focus{
+  outline: none;
+}
+*:focus {
+  outline: none;
+}
+
+input:focus ~ .floating-label,
+input:not(:focus):valid ~ .floating-label {
+  top: 18vw;
+  bottom: 10px;
+  font-size: 1.1vw;
+}
+
+.inputText {
+  font-size: 1.3vw;
+  width: 28vw;
+  height: auto;
+}
+
+.floating-label {
+  position: absolute;
+  pointer-events: none;
+  top: 15vw;
+  font-size: 1.3vw;
+  transition: 0.2s ease all;
+}
+
+input:focus ~ .floating-label-name-mobile,
+input:not(:focus):valid ~ .floating-label-name-mobile {
+  top: 50vw;
+  bottom: 10px;
+  font-size: 3vw;
+}
+
+.floating-label-name-mobile {
+  position: absolute;
+  pointer-events: none;
+  top: 40vw;
+  font-size: 4.5vw;
+  transition: 0.2s ease all;
+}
+
+input:focus ~ .floating-label-mail-mobile,
+input:not(:focus):valid ~ .floating-label-mail-mobile {
+  top: 70vw;
+  bottom: 10px;
+  font-size: 3vw;
+}
+
+.floating-label-mail-mobile {
+  position: absolute;
+  pointer-events: none;
+  top: 60vw;
+  font-size: 4.5vw;
+  transition: 0.2s ease all;
+}
+
+input:focus ~ .floating-label-assunto-mobile,
+input:not(:focus):valid ~ .floating-label-assunto-mobile {
+  top: 90vw;
+  bottom: 10px;
+  font-size: 3vw;
+}
+
+.floating-label-assunto-mobile {
+  position: absolute;
+  pointer-events: none;
+  top: 80vw;
+  font-size: 4.5vw;
+  transition: 0.2s ease all;
+}
+
+input {
+    box-shadow:none !important;
+}
+
+/* TEXT AREA */
+textarea:focus ~ .floating-labelTextArea,
+textarea:not(:focus):valid ~ .floating-labelTextArea {
+  top: 33vw;
+  bottom: 10px;
+  font-size: 1.1vw;
+}
+
+.inputTextArea {
+  font-size: 1.3vw;
+  width: 89vw;
+  height: 15vw;
+  height: auto;
+}
+
+.floating-labelTextArea {
+  position: absolute;
+  pointer-events: none;
+  top: 31vw;
+  font-size: 1.3vw;
+  transition: 0.2s ease all;
+}
+
+.floating-label-mobile-TextArea {
+  position: absolute;
+  pointer-events: none;
+  top: 120vw;
+  font-size: 4.5vw;
+  transition: 0.2s ease all;
+}
+
+textarea:focus ~ .floating-label-mobile-TextArea,
+textarea:not(:focus):valid ~ .floating-label-mobile-TextArea {
+  top: 130vw;
+  bottom: 10px;
+  font-size: 3vw;
+}
+
+.inputTextArea {
+    box-shadow:none !important;
+}
+
+/* buttonEnviar */
+.buttonBlock {
+  color: inherit;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.buttonEnviar {
+  color: white;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.buttonEnviar:hover {
+  color: rgb(163, 44, 44) !important;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+@keyframes introOpen {
+  0%   {opacity:0;}
+  25%  {opacity:0.1;}
+  50%  {opacity:0.2;}
+  50%  {opacity:0.3;}
+  50%  {opacity:0.4;}
+  50%  {opacity:0.5;}
+  50%  {opacity:0.6;}
+  50%  {opacity:0.7;}
+  50%  {opacity:0.8;}
+  50%  {opacity:0.9;}
+  100% {opacity:1;}
+}
+
+.intro {
+  -webkit-animation: introOpen 1s;
+  animation: introOpen 1s;
+}
+.fix {
+  opacity: 1 !important;
+}

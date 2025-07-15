@@ -1,0 +1,77 @@
+<div id="infoModalId" #infoModalId class="infoHidden infoWindows currentFont" [style.width]="mobileMenu ? '90vw' : '45vw'" [style.height]="mobileMenu ? '' : '16vw'" [style.visibility]="display ? 'visible' : 'hidden'" style="border-width: 1px; border-radius: 10px; display: block; transform: matrix(1, 0, 0, 1, -200, -110) scale(1);
+        text-align: center;
+        position: fixed;
+        font-size: 16px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        background-color: #fff;
+        box-shadow: 0px 1px 4px 0 rgba(0,0,0,0.5);
+        z-index: 99999;">
+<div class="ui-g infoWindows" style="display: flex;">
+    <button class="infoWindows" [style.border-radius]="mobileMenu? '5vw' : '1vw'" (click)="closePromotion()" style="position: absolute; background: white; color: red; top: -10px; right: -10px;">
+        X
+    </button>
+    <div class="infoWindows" [style.width]="mobileMenu ? '30vw' : '25%'" [style.min-width]="mobileMenu ? '30vw' : '25%'">        
+        <img class="infoWindows" [style.width]="mobileMenu ? '30vw' : '11vw'" [style.height]="mobileMenu ? '' : '16vw'" style="float:left; border-radius: 10px; border-top-right-radius: 0; border-bottom-right-radius: 0;" [src]="objInfo === null ? '' : './../../assets/images/' + (objInfo.type === 'conto' ? 'contos' : (objInfo.type === 'miniconto' ? 'minicontos' : 'blogs')) + '/' + objInfo.id + '.jpg'" alt="">
+    </div>
+    <!-- WEB -->
+    <div class="infoWindows" *ngIf="!mobileMenu" style="float: left; min-width: 20%; width: 20%;">
+        <div class="infoWindows" style="height: 85%;">
+            <div class="infoWindows" style="float: right; margin-left: 2vw; margin-top: 1vw;">
+                <label class="infoWindows currentFont" style="font-size: 1.4vw; min-width: 8vw; text-align: right; font-weight: bold;">{{objInfo === null ? '' : objInfo.titulo}}</label>
+            </div>
+            <div class="infoWindows" style="float: right; margin-top: -0.5vw;">
+                <label class="infoWindows currentFont" style="font-size: 1.1vw; color: red; font-weight: bold;">{{objInfo === null ? '' : objInfo.categoria}}</label>
+            </div>
+        </div>
+
+        <div class="infoWindows" *ngIf="objInfo === null ? false : !objInfo.bilbboConto" style="width: 85%; margin: auto; display: flex;">
+            <img style="float: left; width: 3.5vw; height: 3.5vw; margin-top: -0.5vw; margin-left: -1vw;" src="./../../assets/images/capaIcon/leiturasBlack.png" alt="">
+            <label class="currentFont" style="float: left; width: 5vw; height: auto; font-size: 1.3vw; font-weight: bold; margin-left: -1vw; margin-top: 0.2vw;">{{objInfo === null ? '' : objInfo.leituras}}</label>
+            <img style="float: left; width: 3.5vw; height: 3.5vw; margin-top: -0.5vw; margin-left: -1vw; " src="./../../assets/images/capaIcon/curtidasBlack.png" alt="">
+            <label class="currentFont" style="float: left; width: 5vw; height: auto; font-size: 1.3vw; font-weight: bold; margin-left: -1vw; margin-top: 0.2vw;">{{objInfo === null ? '' : objInfo.curtidas}}</label>
+        </div>
+        <div class="infoWindows" *ngIf="objInfo === null ? false : objInfo.bilbboConto" style="width: 85%; margin: auto;">
+            <img style="float:left; width: 5vw; height: auto;" src="./../../assets/images/icons/bilbbo.png" alt="">
+        </div>
+    </div>
+    <div class="infoWindows" *ngIf="!mobileMenu" style="min-width: 50%;">
+        <div class="infoWindows" style="margin-left: 2vw; margin-top: 1vw; display: flex; width: 100%; height: 65%; margin-bottom: 0.5vw;">
+            <textarea class="infoWindows currentFont" id="textareaId" disabled style="width: 100%; min-width: 100%; height: 100%; max-height: 100%; min-height: 100%; background-color: transparent; color: black; font-size: 1.1vw; text-align: justify; border: none; scrollbar-face-color: #ff8c00; scrollbar-track-color: #fff8dc; scrollbar-arrow-color: #ffffff; scrollbar-highlight-color: #fff8dc; scrollbar-shadow-color: #d2691e; scrollbar-3dlight-color: #ffebcd; scrollbar-darkshadow-color: #8b0000; resize: none">{{objInfo === null ? '' : objInfo.descricao}}</textarea>
+        </div>
+        <div class="infoWindows" style="width: 100%; margin: auto; margin-left: 1.8vw; margin-top: 0.8vw;">
+            <button class="infoWindows currentFont" style="width: 100%; font-size: 2.1vw; border-radius: 10px; color: black; background-color: white;" (click)="leitura()">Ler</button>
+        </div>
+    </div>
+
+    <!-- MOBILE -->
+    <div class="infoWindows" *ngIf="mobileMenu" style="float: left;">
+        <div class="infoWindows" style="height: 100%;">
+            <div class="infoWindows" style="float: right; margin-top: 1vw;">
+                <label class="infoWindows currentFont" style="margin-left: 2vw; font-size: 3.5vw; min-width: 60vw; text-align: left; font-weight: bold;">{{objInfo === null ? '' : objInfo.titulo}}</label>
+            </div>
+            <div class="infoWindows" style="float: left; margin-top: -2vw; display: flex;">
+                <label class="infoWindows currentFont" style="margin-right: 15vw; min-width: 15vw; margin-left: 2vw; font-size: 3vw; color: red; font-weight: bold; text-align: left;">{{objInfo === null ? '' : objInfo.categoria}}</label>
+                <div class="infoWindows" *ngIf="objInfo === null ? false : !objInfo.bilbboConto" style="width: 100%; margin: auto; display: flex;">
+                    <img style="float: left; width: 10vw; height: 10vw; margin-top: -3vw;" src="./../../assets/images/capaIcon/leiturasBlack.png" alt="">
+                    <label class="currentFont" style="float: left; width: 5vw; height: auto; font-size: 3.5vw; font-weight: bold; margin-left: -2vw; margin-top: -1vw;">{{objInfo === null ? '' : objInfo.leituras}}</label>
+                    <img style="float: left; width: 10vw; height: 10vw; margin-top: -3vw; " src="./../../assets/images/capaIcon/curtidasBlack.png" alt="">
+                    <label class="currentFont" style="float: left; width: 5vw; height: auto; font-size: 3.5vw; font-weight: bold; margin-left: -2vw; margin-top: -1vw;">{{objInfo === null ? '' : objInfo.curtidas}}</label>
+                </div>
+            </div>
+            <div>
+                <textarea class="infoWindows currentFont" id="textareaId" disabled style="width: 90%; min-width: 90%; height: 23vw; max-height: 23vw; min-height: 23vw; background-color: transparent; color: black !important; font-size: 3vw; border: none; scrollbar-face-color: #ff8c00; scrollbar-track-color: #fff8dc; scrollbar-arrow-color: #ffffff; scrollbar-highlight-color: #fff8dc; scrollbar-shadow-color: #d2691e; scrollbar-3dlight-color: #ffebcd; scrollbar-darkshadow-color: #8b0000; resize: none">{{objInfo === null ? '' : objInfo.descricao}}</textarea>
+            </div>
+            <div [style.margin-top]="currentWidth > 350 ? (currentWidth >= 375 ? (currentWidth > 400 ? '1vw' : '0vw') : '-1vw') : (currentWidth < 300 ? '-4vw' : '-3vw')" style="display: flex; width: 100%;">
+                <div class="infoWindows" [style.width]="(objInfo === null ? false : objInfo.bilbboConto) ? '65%' : '90%'" style="width: 90%; margin: auto; margin-left: 2vw;">
+                    <button class="infoWindows currentFont" style="width: 100%; float: left; font-size: 4vw; border-radius: 10px; color: black; background-color: white;" (click)="leitura()">Ler</button>
+                </div>
+                <div class="infoWindows" *ngIf="objInfo === null ? false : objInfo.bilbboConto" style="width: auto; margin: auto; margin-right: 5vw; margin-left: 2vw;">
+                    <img class="infoWindows" style="float:left; width: 15vw; height: auto; height: auto; float: right;" src="./../../assets/images/icons/bilbbo.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

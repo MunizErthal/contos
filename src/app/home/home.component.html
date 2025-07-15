@@ -1,0 +1,357 @@
+<div *ngIf="!getInfos && !animacaoIntro" style="margin-top: 1vw;" #contos id="contos">.</div>
+<div *ngIf="!getInfos && !animacaoIntro" style="margin-top: 7vw;"></div>
+
+<div *ngIf="animacaoIntro" [style.margin-top]="mobileMenu ? '25vh' : '45vh'" class="selector" style="text-align: center; margin: auto; margin-top: 25vh;"> 
+    <label id="welcomePt1" [style.width]="mobileMenu ? '' : '100%'" class="currentFont selector" [style.font-size]="mobileMenu ? '12vw' : '4.1vw'" #welcomePt1 style="opacity: 0; color: white; margin: auto;">Bem-vindos</label>
+    <label id="welcomePt2" [style.width]="mobileMenu ? '70%' : '100%'" class="currentFont selector" [style.font-size]="mobileMenu ? '7vw' : '2.1vw'" #welcomePt2 style="opacity: 0; color: white; margin: auto;">a minha imaginação</label>
+</div>
+
+<div id="conteudo" #conteudo *ngIf="!getInfos && !animacaoIntro" style="opacity: 0; margin-left: 5vw">
+    <div [style.margin-top]="mobileMenu ? '10vw' : '5vw'" style="margin-bottom: 2vw;">
+        <!-- CONTOS -->
+        <div>
+            <div style="margin: auto;">
+                <label class="currentFont" [style.font-size]="mobileMenu ? '6vw' : '2.1vw'" style="color: #fff; cursor: pointer;" (click)="goContos()">CONTOS</label>
+                <div class="tooltip currentFont">
+                    <img [style.width]="mobileMenu ? '7vw' : '2.3vw'" [style.margin-bottom]="mobileMenu ? '1vw' : '0.5vw'" style="height: auto; cursor: pointer;" alt="" (click)="contoAleatorio()" [src]="'./../../assets/images/icons/aleatorio.png'">
+                    <span class="tooltiptext currentFont" style="top: 9vw !important; color: white;">Ler um conto aleatoriamente.</span>
+                </div>
+            </div>
+
+            <!-- MOBILE -->
+            <div *ngIf="mobileMenu" style="display: flex;">
+                <div style="margin-top: 1.5vw; display: flex; width: 95%; overflow-x: scroll;">
+                    <div *ngFor="let conto of contosList" (click)="openInfo(conto)" class="text-center" style="display: flex; margin: auto; margin-right: 2vw; height: auto; margin-top: 0vw; margin-left: 0vw; min-width: 35vw;">
+                        <img class="capaMobile" [src]="'./../../assets/images/contos/' + conto.id + '.jpg'">
+                        <div  class="introInfoDiv" style="background: black; position: relative; width: 12vw; height: 12vw; margin-top: 0.8vw; margin-left: -34vw; border-radius: 7px; opacity: 0.7;"></div>
+                        <img  class="introInfo" style="margin-left: -12vw; width: 8vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                        <label  class="introInfo currentFont" style="position: relative; margin-left: 0vw; margin-top: 1.8vw; font-size: 2.8vw; color: white; font-weight: bold;">{{conto.leituras}}</label>
+                        <img  class="introInfo" style="margin-left: 15.5vw; margin-left: -10vw; margin-top: 5vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                        <label  class="introInfo currentFont" style="position: relative; font-size: 2.8vw; margin-left: 0.3vw; margin-top: 6.8vw; color: white; font-weight: bold;">{{conto.curtidas}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WEB -->
+            <div  class="gesture__zone" (swipeleft)="next()" (swiperight)="before()" *ngIf="!mobileMenu" style="display: flex;">
+                <div style="width: 1%; margin: auto; z-index: 10;" (click)="before()">
+                    <img [class]="beforeExist ? 'rounded float-start botaoPassar' : 'rounded float-start botaoPassarDisabled'"  src="./../../assets/images/icons/left.png" style="height: auto;">
+                </div>
+                <div style="margin-top: 1.5vw; display: flex; width: 95%;">
+                    <div *ngIf="contosList !== undefined && contosList.length > 0" style="display: flex;">
+                        <div [class]="nextAnimation ? 'capaMovimentoAvancar' : (beforeAnimation ? 'capaMovimentoVoltar' : '')" style="display: flex;">
+                            <!-- ANTERIOR NÃO EXISTE -->
+                            <div *ngIf="start === 0 || contosList[start - 1] === null || contosList[start - 1] === undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; margin-left: 7vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="next()" (swiperight)="before()" ondragstart="return false;" style="background-color: transparent; width: 5vw; height: auto;" class="rounded float-start">
+                                </div>
+                            </div>
+
+                            <!-- ANTERIOR -->
+                            <div *ngIf="start > 0 && contosList[start - 1] !== null && contosList[start - 1] !== undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="next()" (swiperight)="before()" ondragstart="return false;" id="beforeCapa" #beforeCapa [class]="nextAnimation ? 'rounded float-start apagar' : (beforeAnimation ? 'rounded float-start menosOpacityClass' : 'rounded float-start')" [src]="'./../../assets/images/contos/' + contosList[start - 1].id + '.jpg'" style="opacity: 0.2; width: 12vw; margin-top: 0.6vw; height: 18.5vw;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div [class]="nextAnimation ? 'capaMovimentoAvancar' : (beforeAnimation ? 'capaMovimentoVoltar' : '')" style="display: flex;">
+                            <!-- LISTA -->
+                            <div (swipeleft)="next()" (swiperight)="before()" ondragstart="return false;" (click)="openInfo(contosList[start])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img [class]="nextAnimation ? 'rounded float-start capa maisOpacityClass' : 'rounded float-start capa'" id="image1" #image1 (mouseleave)="exitCapa('image1')"  [src]="'./../../assets/images/contos/' + contosList[start].id + '.jpg'">
+                                <div  [style.width]="contosList[start].leituras > 9 || contosList[start].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{contosList[start].leituras}}</label>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{contosList[start].curtidas}}</label>
+                            </div>
+                            <div (swipeleft)="next()" (swiperight)="before()" ondragstart="return false;" (click)="openInfo(contosList[start + 1])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img [src]="'./../../assets/images/contos/' + contosList[start + 1].id + '.jpg'" style="height: auto;" id="image2" #image2 (mouseleave)="exitCapa('image2')" class="rounded float-start capa">
+                                <div  [style.width]="contosList[start + 1].leituras > 9 || contosList[start + 1].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{contosList[start + 1].leituras}}</label>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{contosList[start + 1].curtidas}}</label>
+                            </div>
+                            <div (swipeleft)="next()" (swiperight)="before()" ondragstart="return false;" (click)="openInfo(contosList[start + 2])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img [src]="'./../../assets/images/contos/' + contosList[start + 2].id + '.jpg'" style="height: auto;" id="image3" #image3 (mouseleave)="exitCapa('image3')" class="rounded float-start capa">
+                                <div  [style.width]="contosList[start + 2].leituras > 9 || contosList[start + 2].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{contosList[start + 2].leituras}}</label>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{contosList[start + 2].curtidas}}</label>
+                            </div>
+                            <div (swipeleft)="next()" (swiperight)="before()" ondragstart="return false;" (click)="openInfo(contosList[start + 3])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img [src]="'./../../assets/images/contos/' + contosList[start + 3].id + '.jpg'" style="height: auto;" id="image4" #image4 (mouseleave)="exitCapa('image4')" class="rounded float-start capa">
+                                <div  [style.width]="contosList[start + 3].leituras > 9 || contosList[start + 3].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{contosList[start + 3].leituras}}</label>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{contosList[start + 3].curtidas}}</label>
+                            </div>
+                            <div (swipeleft)="next()" (swiperight)="before()" ondragstart="return false;" (click)="openInfo(contosList[start + 4])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img [class]="beforeAnimation ? 'rounded float-start capa maisOpacityClass' : 'rounded float-start capa'" id="image5" #image5 (mouseleave)="exitCapa('image5')" [src]="'./../../assets/images/contos/' + contosList[start + 4].id + '.jpg'">
+                                <div  [style.width]="contosList[start + 4].leituras > 9 || contosList[start + 4].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{contosList[start + 4].leituras}}</label>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{contosList[start + 4].curtidas}}</label>
+                            </div>
+                        </div>
+
+                        <div [class]="nextAnimation ? 'capaMovimentoAvancar' : (beforeAnimation ? 'capaMovimentoVoltar' : '')" style="display: flex;">
+                            <!-- PRÓXIMO 1 NÃO EXISTE -->
+                            <div *ngIf="contosList[start + 5] === null || contosList[start + 5] === undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="next()" (swiperight)="before()" ondragstart="return false;" style="background-color: transparent; width: 5vw; height: auto;" class="rounded float-start">
+                                </div>
+                            </div>
+
+                            <!-- PRÓXIMO 1 -->
+                            <div *ngIf="contosList[start + 5] !== null && contosList[start + 5] !== undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="next()" (swiperight)="before()" ondragstart="return false;" id="nextCapa" #nextCapa [class]="nextAnimation ? 'rounded float-start menosOpacityClass' : (beforeAnimation ? 'rounded float-start apagar' : 'rounded float-start')" [src]="'./../../assets/images/contos/' + contosList[start + 5].id + '.jpg'" style="opacity: 0.2; width: 12vw; margin-top: 0.6vw; height: 18.5vw;" class="rounded float-start">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="next()" style="width: 10%; margin: auto; margin-left: -5vw; z-index: 10;">
+                    <img [class]="nextExist ? 'rounded float-start botaoPassar' : 'rounded float-start botaoPassarDisabled'" src="./../../assets/images/icons/right.png" style="height: auto;">
+                </div>
+            </div>
+        </div>
+
+        <!-- MINICONTOS -->
+        <div style="margin-top: 3vw;">
+            <div style="margin: auto;">
+                <label class="currentFont" [style.font-size]="mobileMenu ? '6vw' : '2.1vw'" style="color: #fff; cursor: pointer;" (click)="goMinicontos()">MINICONTOS</label>
+                <div class="tooltip currentFont">
+                    <img [style.width]="mobileMenu ? '7vw' : '2.3vw'" [style.margin-bottom]="mobileMenu ? '1vw' : '0.5vw'" style="height: auto; cursor: pointer;" alt="" (click)="miniAleatorio()" [src]="'./../../assets/images/icons/aleatorio.png'">
+                    <span class="tooltiptext currentFont" style="top: 37vw !important; color: white; right: 65vw;">Ler um miniconto aleatoriamente.</span>
+                </div>
+            </div>
+
+            <!-- MOBILE -->
+            <div *ngIf="mobileMenu" style="display: flex;">
+                <div style="margin-top: 1.5vw; display: flex; width: 95%; overflow-x: scroll;">
+                    <div *ngFor="let miniconto of minicontosList" (click)="openInfo(miniconto)" class="text-center" style="display: flex; margin: auto; margin-right: 2vw; height: auto; margin-top: 0vw; margin-left: 0vw; min-width: 35vw;">
+                        <img class="capaMobile" [src]="'./../../assets/images/minicontos/' + miniconto.id + '.jpg'">
+                        <div class="introInfoDiv" style="background: black; position: relative; width: 12vw; height: 12vw; margin-top: 0.8vw; margin-left: -34vw; border-radius: 7px; opacity: 0.7;"></div>
+                        <img class="introInfo" style="margin-left: -12vw; width: 8vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                        <label class="introInfo currentFont" style="position: relative; margin-left: 0vw; margin-top: 1.8vw; font-size: 2.8vw; color: white; font-weight: bold;">{{miniconto.leituras}}</label>
+                        <img class="introInfo" style="margin-left: 15.5vw; margin-left: -10vw; margin-top: 5vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                        <label class="introInfo currentFont" style="position: relative; font-size: 2.8vw; margin-left: 0.3vw; margin-top: 6.8vw; color: white; font-weight: bold;">{{miniconto.curtidas}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WEB -->
+            <div *ngIf="!mobileMenu" style="display: flex;">
+                <div style="width: 1%; margin: auto; z-index: 10;" (click)="beforeMiniconto()">
+                    <img [class]="minicontoBeforeExist ? 'rounded float-start botaoPassar' : 'rounded float-start botaoPassarDisabled'"  src="./../../assets/images/icons/left.png" style="height: auto;">
+                </div>
+                <div style="margin-top: 1.5vw; display: flex; width: 95%;">
+                    
+                    <div *ngIf="minicontosList !== undefined && minicontosList.length > 0" style="display: flex;">
+                        <div [class]="minicontoNextAnimation ? 'capaMovimentoAvancar' : (minicontoBeforeAnimation ? 'capaMovimentoVoltar' : '')" style="display: flex;">
+                            <!-- ANTERIOR NÃO EXISTE -->
+                            <div *ngIf="startMiniconto === 0 || minicontosList[startMiniconto - 1] === null || minicontosList[startMiniconto - 1] === undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; margin-left: 7vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="nextMiniconto()" (swiperight)="beforeMiniconto()" ondragstart="return false;" style="background-color: transparent; width: 5vw; height: auto;" class="rounded float-start">
+                                </div>
+                            </div>
+
+                            <!-- ANTERIOR -->
+                            <div *ngIf="startMiniconto > 0 && minicontosList[startMiniconto - 1] !== null && minicontosList[startMiniconto - 1] !== undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="nextMiniconto()" (swiperight)="beforeMiniconto()" ondragstart="return false;" id="beforeCapaMiniconto" #beforeCapaMiniconto [class]="minicontoNextAnimation ? 'rounded float-start apagar' : (minicontoBeforeAnimation ? 'rounded float-start menosOpacityClass' : 'rounded float-start')" [src]="'./../../assets/images/minicontos/' + minicontosList[startMiniconto - 1].id + '.jpg'" style="opacity: 0.2; width: 12vw; margin-top: 0.6vw; height: 18.5vw;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div [class]="minicontoNextAnimation ? 'capaMovimentoAvancar' : (minicontoBeforeAnimation ? 'capaMovimentoVoltar' : '')" style="display: flex;">
+                            <!-- LISTA -->
+                            <div (click)="openInfo(minicontosList[startMiniconto])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img (swipeleft)="nextMiniconto()" (swiperight)="beforeMiniconto()" ondragstart="return false;" [class]="minicontoNextAnimation ? 'rounded float-start capa maisOpacityClass' : 'rounded float-start capa'" id="imageMini1" #imageMini1 (mouseleave)="exitCapa('imageMini1')"  [src]="'./../../assets/images/minicontos/' + minicontosList[startMiniconto].id + '.jpg'">
+                                <div  [style.width]="minicontosList[startMiniconto].leituras > 9 || minicontosList[startMiniconto].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{minicontosList[startMiniconto].leituras}}</label>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{minicontosList[startMiniconto].curtidas}}</label>
+                            </div>
+                            <div *ngIf="minicontosList[startMiniconto + 1] !== undefined" (click)="openInfo(minicontosList[startMiniconto + 1])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img (swipeleft)="nextMiniconto()" (swiperight)="beforeMiniconto()" ondragstart="return false;" [src]="'./../../assets/images/minicontos/' + minicontosList[startMiniconto + 1].id + '.jpg'" style="height: auto;" id="imageMini2" #imageMini2 (mouseleave)="exitCapa('imageMini2')" class="rounded float-start capa">
+                                <div  [style.width]="minicontosList[startMiniconto + 1].leituras > 9 || minicontosList[startMiniconto + 1].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{minicontosList[startMiniconto + 1].leituras}}</label>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{minicontosList[startMiniconto + 1].curtidas}}</label>
+                            </div>
+                            <div *ngIf="minicontosList[startMiniconto + 2] !== undefined" (click)="openInfo(minicontosList[startMiniconto + 2])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img (swipeleft)="nextMiniconto()" (swiperight)="beforeMiniconto()" ondragstart="return false;" [src]="'./../../assets/images/minicontos/' + minicontosList[startMiniconto + 2].id + '.jpg'" style="height: auto;" id="imageMini3" #imageMini3 (mouseleave)="exitCapa('imageMini3')" class="rounded float-start capa">
+                                <div  [style.width]="minicontosList[startMiniconto + 2].leituras > 9 || minicontosList[startMiniconto + 2].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{minicontosList[startMiniconto + 2].leituras}}</label>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{minicontosList[startMiniconto + 2].curtidas}}</label>
+                            </div>
+                            <div *ngIf="minicontosList[startMiniconto + 3] !== undefined" (click)="openInfo(minicontosList[startMiniconto + 3])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img (swipeleft)="nextMiniconto()" (swiperight)="beforeMiniconto()" ondragstart="return false;" [src]="'./../../assets/images/minicontos/' + minicontosList[startMiniconto + 3].id + '.jpg'" style="height: auto;" id="imageMini4" #imageMini4 (mouseleave)="exitCapa('imageMini4')" class="rounded float-start capa">
+                                <div  [style.width]="minicontosList[startMiniconto + 3].leituras > 9 ||minicontosList[startMiniconto + 3].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{minicontosList[startMiniconto + 3].leituras}}</label>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{minicontosList[startMiniconto + 3].curtidas}}</label>
+                            </div>
+                            <div *ngIf="minicontosList[startMiniconto + 4] !== undefined" (click)="openInfo(minicontosList[startMiniconto + 4])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img (swipeleft)="nextMiniconto()" (swiperight)="beforeMiniconto()" ondragstart="return false;" [class]="minicontoBeforeAnimation ? 'rounded float-start capa maisOpacityClass' : 'rounded float-start capa'" id="imageMini5" #imageMini5 (mouseleave)="exitCapa('imageMini5')" [src]="'./../../assets/images/minicontos/' + minicontosList[startMiniconto + 4].id + '.jpg'">
+                                <div  [style.width]="minicontosList[startMiniconto + 4].leituras > 9 || minicontosList[startMiniconto + 4].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{minicontosList[startMiniconto + 4].leituras}}</label>
+                                <img  class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label  class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{minicontosList[startMiniconto + 4].curtidas}}</label>
+                            </div>
+                        </div>
+
+                        <div [class]="minicontoNextAnimation ? 'capaMovimentoAvancar' : (minicontoBeforeAnimation ? 'capaMovimentoVoltar' : '')" style="display: flex;">
+                            <!-- PRÓXIMO 1 NÃO EXISTE -->
+                            <div *ngIf="minicontosList[endMiniconto] === null || minicontosList[startMiniconto + 5] === undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="nextMiniconto()" (swiperight)="beforeMiniconto()" ondragstart="return false;" style="background-color: transparent; width: 5vw; height: auto;" class="rounded float-start">
+                                </div>
+                            </div>
+
+                            <!-- PRÓXIMO 1 -->
+                            <div *ngIf="minicontosList[startMiniconto + 5] !== null && minicontosList[startMiniconto + 5] !== undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="nextMiniconto()" (swiperight)="beforeMiniconto()" ondragstart="return false;" id="nextCapaMiniconto" #nextCapaMiniconto [class]="minicontoNextAnimation ? 'rounded float-start menosOpacityClass' : (minicontoBeforeAnimation ? 'rounded floangt-start apagar' : 'rounded float-start')" [src]="'./../../assets/images/minicontos/' + minicontosList[startMiniconto + 5].id + '.jpg'" style="opacity: 0.2; width: 12vw; margin-top: 0.6vw; height: 18.5vw;" class="rounded float-start">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="nextMiniconto()" style="width: 10%; margin: auto; margin-left: -5vw; z-index: 10;">
+                    <img [class]="minicontoNextExist ? 'rounded float-start botaoPassar' : 'rounded float-start botaoPassarDisabled'" src="./../../assets/images/icons/right.png" style="height: auto;">
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOGS -->
+        <div style="margin-top: 3vw;">
+            <div style="margin: auto;">
+                <label class="currentFont" [style.font-size]="mobileMenu ? '6vw' : '2.1vw'" style="color: #fff; cursor: pointer;" (click)="goBlog()">BLOG</label>
+                <div class="tooltip currentFont">
+                    <img [style.width]="mobileMenu ? '7vw' : '2.3vw'" [style.margin-bottom]="mobileMenu ? '1vw' : '0.5vw'" style="height: auto; cursor: pointer;" alt="" (click)="blogAleatorio()" [src]="'./../../assets/images/icons/aleatorio.png'">
+                    <span class="tooltiptext currentFont" style="top: 65vw !important; color: white; right: 75vw;">Ler um blog aleatoriamente.</span>
+                </div>
+            </div>
+
+            <!-- MOBILE -->
+            <div *ngIf="mobileMenu" style="display: flex;">
+                <div style="margin-top: 1.5vw; display: flex; width: 95%; overflow-x: scroll;">
+                    <div *ngFor="let blog of blogList" (click)="openInfo(blog)" class="text-center" style="display: flex; margin: auto; margin-right: 2vw; height: auto; margin-top: 0vw; margin-left: 0vw; margin-bottom: 10vw; min-width: 35vw;">
+                        <img class="capaMobile" [src]="'./../../assets/images/blogs/' + blog.id + '.jpg'">
+                        <div  class="introInfoDiv" style="background: black; position: relative; width: 12vw; height: 12vw; margin-top: 0.8vw; margin-left: -34vw; border-radius: 7px; opacity: 0.7;"></div>
+                        <img  class="introInfo" style="margin-left: -12vw; width: 8vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                        <label  class="introInfo currentFont" style="position: relative; margin-left: 0vw; margin-top: 1.8vw; font-size: 2.8vw; color: white; font-weight: bold;">{{blog.leituras}}</label>
+                        <img  class="introInfo" style="margin-left: 15.5vw; margin-left: -10vw; margin-top: 5vw; height: 8vw; position: relative;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                        <label  class="introInfo currentFont" style="position: relative; font-size: 2.8vw; margin-left: 0.3vw; margin-top: 6.8vw; color: white; font-weight: bold;">{{blog.curtidas}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WEB -->
+            <div *ngIf="!mobileMenu" style="display: flex; margin-bottom: 5vw;">
+                <div style="width: 1%; margin: auto; z-index: 10;" (click)="beforeBlog()">
+                    <img [class]="minicontoBeforeExist ? 'rounded float-start botaoPassar' : 'rounded float-start botaoPassarDisabled'"  src="./../../assets/images/icons/left.png" style="height: auto;">
+                </div>
+                <div style="margin-top: 1.5vw; display: flex; width: 95%;">
+                    
+                    <div *ngIf="blogList !== undefined && blogList.length > 0" style="display: flex;">
+                        <div [class]="blogNextAnimation ? 'capaMovimentoAvancar' : (blogBeforeAnimation ? 'capaMovimentoVoltar' : '')" style="display: flex;">
+                            <!-- ANTERIOR NÃO EXISTE -->  
+                            <div *ngIf="startBlog === 0 || blogList[startBlog - 1] === null || blogList[startBlog - 1] === undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; margin-left: 7vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="nextBlog()" (swiperight)="beforeBlog()" ondragstart="return false;" style="background-color: transparent; width: 5vw; height: auto;" class="rounded float-start">
+                                </div>
+                            </div>
+
+                            <!-- ANTERIOR -->
+                            <div *ngIf="startBlog > 0 && blogList[startBlog - 1] !== null && blogList[startBlog - 1] !== undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="nextBlog()" (swiperight)="beforeBlog()" ondragstart="return false;" id="beforeCapaMiniconto" #beforeCapaMiniconto [class]="blogNextAnimation ? 'rounded float-start apagar' : (blogBeforeAnimation ? 'rounded float-start menosOpacityClass' : 'rounded float-start')" [src]="'./../../assets/images/blogs/' + blogList[start - 1].id + '.jpg'" style="opacity: 0.2; width: 12vw; margin-top: 0.6vw; height: 18.5vw;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div [class]="blogNextAnimation ? 'capaMovimentoAvancar' : (blogBeforeAnimation ? 'capaMovimentoVoltar' : '')" style="display: flex;">
+                            <!-- LISTA -->
+                            <div (click)="openInfo(blogList[startBlog])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img (swipeleft)="nextBlog()" (swiperight)="beforeBlog()" ondragstart="return false;" [class]="blogNextAnimation ? 'rounded float-start capa maisOpacityClass' : 'rounded float-start capa'" id="imageBlog1" #imageBlog1 (mouseleave)="exitCapa('imageBlog1')"  [src]="'./../../assets/images/blogs/' + blogList[startBlog].id + '.jpg'">
+                                <div [style.width]="blogList[startBlog].leituras > 9 || blogList[startBlog].curtidas > 9 ? '4.7vw' : '4vw'"  class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{blogList[startBlog].leituras}}</label>
+                                <img class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{blogList[startBlog].curtidas}}</label>
+                            </div>
+                            <div *ngIf="blogList[startBlog + 1] !== undefined" (click)="openInfo(blogList[startBlog + 1])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img (swipeleft)="nextBlog()" (swiperight)="beforeBlog()" ondragstart="return false;" [src]="'./../../assets/images/blogs/' + blogList[startBlog + 1].id + '.jpg'" style="height: auto;" id="imageBlog2" #imageBlog2 (mouseleave)="exitCapa('imageBlog2')" class="rounded float-start capa">
+                                <div [style.width]="blogList[startBlog + 1].leituras > 9 || blogList[startBlog + 1].curtidas > 9 ? '4.7vw' : '4vw'"  class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{blogList[startBlog + 1].leituras}}</label>
+                                <img class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{blogList[startBlog + 1].curtidas}}</label>
+                            </div>
+                            <div *ngIf="blogList[startBlog + 2] !== undefined" (click)="openInfo(blogList[startBlog + 2])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img (swipeleft)="nextBlog()" (swiperight)="beforeBlog()" ondragstart="return false;" [src]="'./../../assets/images/blogs/' + blogList[startBlog + 2].id + '.jpg'" style="height: auto;" id="imageBlog3" #imageBlog3 (mouseleave)="exitCapa('imageBlog3')" class="rounded float-start capa">
+                                <div [style.width]="blogList[startBlog + 2].leituras > 9 || blogList[startBlog + 2].curtidas > 9 ? '4.7vw' : '4vw'"  class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{blogList[startBlog + 2].leituras}}</label>
+                                <img class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{blogList[startBlog + 2].curtidas}}</label>
+                            </div>
+                            <div *ngIf="blogList[startBlog + 3] !== undefined" (click)="openInfo(blogList[startBlog + 3])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img (swipeleft)="nextBlog()" (swiperight)="beforeBlog()" ondragstart="return false;" [src]="'./../../assets/images/blogs/' + blogList[startBlog + 3].id + '.jpg'" style="height: auto;" id="imageBlog4" #imageBlog4 (mouseleave)="exitCapa('imageBlog4')" class="rounded float-start capa">
+                                <div [style.width]="blogList[startBlog + 3].leituras > 9 || blogList[startBlog + 3].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{blogList[startBlog + 3].leituras}}</label>
+                                <img class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{blogList[startBlog + 3].curtidas}}</label>
+                            </div>
+                            <div *ngIf="blogList[startBlog + 4] !== undefined" (click)="openInfo(blogList[startBlog + 4])" class="text-center" style="display: flex !important; margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw;">
+                                <img (swipeleft)="nextBlog()" (swiperight)="beforeBlog()" ondragstart="return false;" [class]="blogBeforeAnimation ? 'rounded float-start capa maisOpacityClass' : 'rounded float-start capa'" id="imageBlog5" #imageBlog5 (mouseleave)="exitCapa('imageBlog5')" [src]="'./../../assets/images/blogs/' + blogList[startBlog + 4].id + '.jpg'">
+                                <div [style.width]="blogList[startBlog + 4].leituras > 9 || blogList[startBlog + 4].curtidas > 9 ? '4.7vw' : '4vw'" class="introInfoDiv" style="background: black; position: absolute; height: 4vw; margin-top: 0.5vw; margin-left: 0.5vw; border-radius: 7px; opacity: 0.7;"></div>
+                                <img class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute;" src="./../../assets/images/capaIcon/leituras.png" alt="" />
+                                <label class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 0.4vw; color: white; font-weight: bold;">{{blogList[startBlog + 4].leituras}}</label>
+                                <img class="introInfo" style="margin-left: 0.3vw; width: 3vw; height: auto; position: absolute; margin-top: 1.8vw;" src="./../../assets/images/capaIcon/curtidas.png" alt="" />
+                                <label class="introInfo currentFont" style="position: absolute; font-size: 1.4vw; margin-left: 3vw; margin-top: 2.2vw; color: white; font-weight: bold;">{{blogList[startBlog + 4].curtidas}}</label>
+                            </div>
+                        </div>
+
+                        <div [class]="blogNextAnimation ? 'capaMovimentoAvancar' : (blogBeforeAnimation ? 'capaMovimentoVoltar' : '')" style="display: flex;">
+                            <!-- PRÓXIMO 1 NÃO EXISTE -->
+                            <div *ngIf="blogList[startBlog + 5] === null || blogList[startBlog + 5] === undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="nextBlog()" (swiperight)="beforeBlog()" ondragstart="return false;" style="background-color: transparent; width: 5vw; height: auto;" class="rounded float-start">
+                                </div>
+                            </div>
+
+                            <!-- PRÓXIMO 1 -->
+                            <div *ngIf="blogList[startBlog + 5] !== null && blogList[startBlog + 5] !== undefined">
+                                <div class="text-center" style="margin: auto; margin-right: 2vw; height: 20vw; margin-top: 0vw; z-index: 5;">
+                                    <img (swipeleft)="nextBlog()" (swiperight)="beforeBlog()" ondragstart="return false;" id="nextCapaMiniconto" #nextCapaMiniconto [class]="blogNextAnimation ? 'rounded float-start menosOpacityClass' : (blogBeforeAnimation ? 'rounded float-start apagar' : 'rounded float-start')" [src]="'./../../assets/images/blogs/' + blogList[startBlog + 5].id + '.jpg'" style="opacity: 0.2; width: 12vw; margin-top: 0.6vw; height: 18.5vw;" class="rounded float-start">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="nextBlog()" style="width: 10%; margin: auto; margin-left: -5vw; z-index: 10;">
+                    <img [class]="blogNextExist ? 'rounded float-start botaoPassar' : 'rounded float-start botaoPassarDisabled'" src="./../../assets/images/icons/right.png" style="height: auto;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-info [display]="displayInfo" [abrir]="abrir" [objInfo]="objInfo" (onCloseDialog)="closeInfo($event)"></app-info>

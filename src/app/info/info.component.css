@@ -1,0 +1,55 @@
+@keyframes entrar {
+    0% {top:120%;}
+    100% {top:80%;}
+}
+
+@keyframes entrarMobile {
+    0% {top:120%;}
+    100% {top:83%;} /*ANTES ERA 85 E O HEIGHT DA TELA ERA 40VW*/
+}
+
+@keyframes sair {  
+    0% {top:80%;}
+    100% {top:120%;}
+}
+
+@keyframes sairMobile {  
+    0% {top:83%;}
+    100% {top:120%;}
+}
+
+.infoOpen {
+    -webkit-animation: entrar 1s;
+    animation: entrar 1s;
+    animation-direction: normal;
+}
+
+.infoOpenMobile {
+    -webkit-animation: entrarMobile 1s;
+    animation: entrarMobile 1s;
+    animation-direction: normal;
+}
+
+.info {
+    top:80%;
+}
+
+.infoMobile {
+    top:83%;
+}
+
+.infoClose {
+    -webkit-animation: sair 0.5s;
+    animation: sair 0.5s;
+    animation-direction: normal;
+}
+
+.infoCloseMobile {
+    -webkit-animation: sairMobile 0.5s;
+    animation: sairMobile 0.5s;
+    animation-direction: normal;
+}
+
+.infoHidden {
+    top:120%;
+}

@@ -1,0 +1,92 @@
+<div id="shareModalId" #shareModalId [style.background]="mobileMenu ? 'transparent' : (darkMode ? 'black' : 'white')" class="shareHidden shareWindows currentFont" [style.top]="mobileMenu ? '50vh': ''" [style.width]="mobileMenu ? '100vw' : '40vw'" [style.height]="mobileMenu ? '100vh' : '39.5vw'" [style.visibility]="display ? 'visible' : 'hidden'" style="border-width: 1px; border-radius: 10px; display: block; transform: matrix(1, 0, 0, 1, -200, -110) scale(1);        
+        text-align: center;
+        position: fixed;
+        font-size: 16px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        z-index: 99999;">
+    <div class="ui-g shareWindows" [style.margin]="mobileMenu ? 'auto' : ''" [style.width]="mobileMenu ? '60vw' : ''" style="display: flex;">
+        <button *ngIf="!mobileMenu" class="shareWindows" [style.right]="mobileMenu ? '12vw' : '-1vw'" (click)="close('close')" style="z-index: 10; position: absolute; background: white; color: red; top: -10px; border-radius: 5vw;">
+            X
+        </button>
+        <div class="shareWindows" [style.flex-direction]="mobileMenu ? 'column' : 'row'" style="display: flex; width: 100%;">
+            <div id="parentDivPrint" [class]="mobileMenu ? 'shareWindows principalDivImageInfoMobile' : 'shareWindows principalDivImageInfo'">
+                <div [class]="mobileMenu ? 'container shareWindows divPrincipalSTORIEMobile divInfoMobile' : 'container shareWindows divPrincipalSTORIE'" id='divPrint' #divPrint style="display: flex; flex-direction: column;">
+                    <img [class]="mobileMenu ? 'rounded float-start shareWindows storieSizeMobile' : 'rounded float-start shareWindows storieSize'" id='imagePrint' #imagePrint [src]="'./../../assets/images/share/' + backgroundSelect + '.jpg'" style="z-index: 1; border-radius: 10px; border: solid 1px;">
+                    <div id="divTextImage" #divTextImage [class]="mobileMenu ? 'divTextsMobile' : 'divTexts'">
+                        <p id="textSearch" contenteditable="true" spellcheck="false" [style.background]="withBG ? 'rgba(0, 0, 0, 0.7)' : 'transparent'" [style.color]="colorSelect" [style.border-color]="colorSelect" #textSearch [class]="mobileMenu ? 'storieTextTypeSelectMobile selector shareWindows currentFont currentFont' : 'feedTextTypeSelect selector shareWindows currentFont currentFont'" contenteditable>{{supportCharacteres ? textSelect : 'No modo ' + size + ' a frase selecionada não pode ultrapassar  ' + limitSize + ' carácteres e no momento, sua seleção tem ' + this.textSelect.length }}</p>
+                        <p id="pName" #pName contenteditable="true" spellcheck="false" [style.color]="colorSelect" [class]="mobileMenu ? 'pNameClassMobile selector shareWindows currentFont currentFont' : 'pNameClass selector shareWindows currentFont currentFont'" contenteditable>- Fernando Muniz Erthal</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WEB -->
+            <div *ngIf="!mobileMenu" class="shareWindows" style="width: 40%; margin-right: 1vw; margin-top: 0.5vw">
+                <div class="shareWindows" >
+                    <!-- ESTILOS -->
+                    <label class="shareWindows currentFont" [style.color]="darkMode ? 'white' : 'black'" style="font-size: 2vw;">ESTILOS</label>
+                    <div class="shareWindows" style="display: flex; margin-top: 1vw;">
+                        <img class="shareWindows" (click)="changeStyle('starsBlack', 'white', false)" style="margin: auto; margin-right: 1vw; float: right; width: 5vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/share/icons/starBlack.png'" alt="">
+                        <img class="shareWindows" (click)="changeStyle('starsWhite', 'black', false)" style="margin: auto; margin-right: 1vw; float: right; width: 5vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/share/icons/starWhite.png'" alt="">
+                        <img class="shareWindows" (click)="changeStyle('capa-' + contoId, 'white', true)" style="margin: auto; margin-right: 1vw; float: right; width: 5vw; height: auto; margin-bottom: 0.5vw;" [src]="contoId === '-1' ? '' : './../../assets/images/share/icons/capa-' + contoId + '.png'" alt="">
+                    </div>
+                </div>
+                <div class="shareWindows" style="margin-top: 2vw;">
+                    <!-- FORMATO -->
+                    <label class="shareWindows currentFont" [style.color]="darkMode ? 'white' : 'black'" style="font-size: 2vw;">FORMATO</label>
+                    <div class="shareWindows" style="display: flex; margin-top: 1vw;">
+                        <img class="shareWindows" (click)="changeSizeToStorie()" style="margin: auto; margin-right: 1vw; float: right; width: 5vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/socialIcons/' + (darkMode ? 'storieDark' : 'storieDay') + '.png'" alt="">
+                        <img class="shareWindows" (click)="changeSizeToFeed()" style="margin: auto; margin-right: 1vw; float: right; width: 5vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/socialIcons/' + (darkMode ? 'feedDark' : 'feedDay') + '.png'" alt="">     
+                    </div>
+                </div>
+                <div class="shareWindows" style="margin-top: 2vw;">
+                    <!-- SOCIAL -->
+                    <label class="shareWindows currentFont" [style.color]="darkMode ? 'white' : 'black'" style="font-size: 2vw;">BAIXAR</label>
+                    <div class="shareWindows" style="display: flex; margin-top: 1vw;">
+                        <!--img class="shareWindows" (click)="instagramShare()" style="margin: auto; margin-right: 1vw; float: right; width: 5vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/socialIcons/' + (darkMode ? 'instagramDark' : 'instagramDay') + '.png'" alt=""-->                    
+                        <!--img class="shareWindows" (click)="downloadImage()" style="margin: auto; margin-right: 1vw; float: right; width: 5vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/socialIcons/' + (darkMode ? 'facebookDark' : 'facebookDay') + '.png'" alt=""-->                    
+                        <img class="shareWindows" (click)="downloadImage()" style="margin: auto; float: right; width: 5vw; height: auto; margin-bottom: 0.5vw; margin: auto;" [src]="'./../../assets/images/icons/' + (darkMode ? 'downloadDark' : 'downloadDay') + '.png'" alt="">                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE -->
+    <div *ngIf="mobileMenu" class="shareWindows" [style.background]="darkMode ? 'black' : 'white'" [style.box-shadow]="darkMode ? '0 0 50px grey' : '0 0 50px black'" [style.height]="iphone ? '50vw' : ''" style="position: fixed; left: 0px; bottom: 0px; display: flex; width: 100vw; border-top-left-radius: 5vw; border-top-right-radius: 5vw; background: black none repeat scroll 0% 0%; box-shadow: grey 0px 0px 50px;">
+        <div class="shareWindows" [style.width]="iphone ? '36vw' : '35%'" [style.border-color]="darkMode ? 'white' : 'black'" style="margin: auto; margin-top: 0; border-right: solid 2px; padding-bottom: 3vw; padding-top: 3vw;">
+            <!-- FORMATO -->
+            <label class="shareWindows currentFont" [style.color]="darkMode ? 'white' : 'black'" style="font-size: 4vw; margin: 2vw;">FORMATO</label>
+            <div class="shareWindows" [style.display]="iphone ? '' : 'flex'" style="margin-top: 1vw; margin-left: 0.5vw; margin-right: 0.5vw;">
+                <img class="shareWindows" (click)="changeSizeToStorie()" style="margin: auto; width: 15vw; height: auto;" [src]="'./../../assets/images/socialIcons/' + (darkMode ? 'storieDark' : 'storieDay') + '.png'" alt="">
+                <img class="shareWindows" (click)="changeSizeToFeed()" style="margin: auto; width: 15vw; height: auto;" [src]="'./../../assets/images/socialIcons/' + (darkMode ? 'feedDark' : 'feedDay') + '.png'" alt="">     
+            </div>
+        </div>
+        <div class="shareWindows" [style.width]="iphone ? '53vw' : '45%'" [style.border-color]="darkMode ? 'white' : 'black'" style="margin: auto; margin-top: 0; border-right: solid 2px; padding-top: 3vw; padding-bottom: 3vw;">
+            <!-- ESTILOS -->
+            <label class="shareWindows currentFont" [style.color]="darkMode ? 'white' : 'black'" style="font-size: 4vw; margin: 2vw;">ESTILOS</label>
+            <div class="shareWindows" [style.display]="iphone ? '' : 'flex'" style="margin-top: 1vw; margin-right: 0.5vw;">
+                <img class="shareWindows" (click)="changeStyle('starsBlack', 'white', false)" style="margin: auto; width: 15vw; height: auto;"      [src]="'./../../assets/images/share/icons/starBlack.png'" alt="">
+                <img class="shareWindows" (click)="changeStyle('starsWhite', 'black', false)" style="margin: auto; width: 15vw; height: auto;"      [src]="'./../../assets/images/share/icons/starWhite.png'" alt="">
+                <img class="shareWindows" (click)="changeStyle('capa-' + contoId, 'white', true)" style="margin: auto; width: 15vw; height: auto;"  [src]="contoId === '-1' ? '' : './../../assets/images/share/icons/capa-' + contoId + '.png'" alt="">
+            </div>
+        </div>
+        <div class="shareWindows" style="margin: auto; margin-top: 0; padding-top: 3vw; padding-bottom: 3vw; width: 25%;">
+            <!-- SOCIAL -->
+            <label class="shareWindows currentFont" [style.color]="darkMode ? 'white' : 'black'" style="font-size: 4vw; margin: 2vw;">BAIXAR</label>
+            <div class="shareWindows" [style.display]="iphone ? '' : 'flex'" style="margin-top: 1vw; margin-left: 0.5vw;">
+                <!--img class="shareWindows" (click)="instagramShare()" style="margin: auto; margin-right: 1vw; float: right; width: 15vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/socialIcons/' + (darkMode ? 'instagramDark' : 'instagramDay') + '.png'" alt=""-->
+                <!--img class="shareWindows" (click)="downloadImage()" style="margin: auto; margin-right: 1vw; float: right; width: 15vw; height: auto; margin-bottom: 0.5vw;" [src]="'./../../assets/images/socialIcons/' + (darkMode ? 'facebookDark' : 'facebookDay') + '.png'" alt=""-->
+                <img class="shareWindows" (click)="downloadImage()" style="margin: auto; width: 15vw; height: auto;" [src]="'./../../assets/images/icons/' + (darkMode ? 'downloadDark' : 'downloadDay') + '.png'" alt="">                    
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="width: 0; height: 0; z-index: 0;" [style.background]="darkMode ? 'black' : 'white'" id="download" #download>
+    <img id="canvas" #canvas>
+    <a id="downloadLink" #downloadLink></a>
+</div>

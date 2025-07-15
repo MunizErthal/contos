@@ -1,0 +1,362 @@
+textarea:focus, input:focus{
+    outline: none;
+  }
+  *:focus {
+    outline: none;
+  }
+
+@keyframes entrarComentar {
+    0% {top:150%;}
+    100% {top:58%;}
+}
+
+@keyframes sairComentar {  
+    0% {top:58%;}
+    100% {top:150%;}
+}
+
+/* FALTA FAZER MOBILE */
+@keyframes sairComentarMobile {  
+    0% {top:105vw;}
+    100% {top:120%;}
+}
+
+@keyframes entrarComentarMobile {
+    0% {top:120%;}
+    100% {top:105vw;}
+}
+
+.comentarOpen {
+    -webkit-animation: entrarComentar 1s;
+    animation: entrarComentar 1s;
+    animation-direction: normal;
+}
+
+.comentarOpenMobile {
+    -webkit-animation: entrarComentarMobile 1s;
+    animation: entrarComentarMobile 1s;
+    animation-direction: normal;
+}
+
+.comentar {
+    top:58%;
+}
+
+/* buttonEnviar */
+.buttonBlock {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  .buttonEnviar {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  .buttonEnviar:hover {
+    color: rgb(163, 44, 44) !important;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+  }
+
+.comentarClose {
+    -webkit-animation: sairComentar 0.5s;
+    animation: sairComentar 0.5s;
+    animation-direction: normal;
+}
+
+/* FALTA FAZER MOBILE */
+.comentarMobile {
+    top: 105vw;
+}
+.comentarCloseMobile {
+    -webkit-animation: sairComentarMobile 0.5s;
+    animation: sairComentarMobile 0.5s;
+    animation-direction: normal;
+}
+
+.comentarHidden {
+    top:150%;
+}
+
+.selector {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+ }
+
+.limitError {
+    color: red !important;
+}
+
+.limitErrorMobile {
+    color: red !important;
+}
+
+/* STORIE */
+.divPrincipalSTORIE {
+    width: 22vw;
+    height: 38.5vw;
+    margin: 0vw;
+    margin-left: 0.5vw;
+    margin-top: 0.5vw;
+}
+
+.storieSize {
+    width: 100%;
+    height: 100%;
+}
+
+.divTexts {
+    z-index: 1;
+    position: absolute;
+    top: 4.2vw;
+    margin-left: 3.9vw;
+    z-index: 1;
+ }
+
+
+.divTextEnd {
+    position: absolute;
+    bottom: 0;
+    margin-left: 3.9vw;
+    z-index: 1;
+}
+
+.principalDivImageInfo {
+    width: 60%;
+}
+
+/* PRINT */
+.divPrincipalPrintSTORIE {
+    width: 1080px;
+    height: 1920px;
+    margin: 0vw;
+}
+
+.imagePrincipalPrintSTORIE {
+    width: 1080px;
+    height: 1920px;
+}
+
+.divTextsPrint {
+    z-index: 1;
+    position: static;
+    margin-top: -1780px;
+    margin-left: 185px;
+ }
+
+.divTextEndPrint {
+    position: static;
+    z-index: 1;
+    margin-left: 25px;
+}
+
+/* FEED */
+.feedSize {
+    width: 100%;
+    height: 55%;
+    margin-top: 10vw;
+}
+
+.divTextsFEED {
+    z-index: 1;
+    position: absolute;
+    top: 12.2vw;
+    margin-left: 3.9vw;
+    z-index: 1;
+ }
+
+.divTextEndFEED {
+    position: absolute;
+    bottom: 7vw;
+    margin-left: 3.9vw;
+    z-index: 1;
+}
+
+/* FEED PRINT */
+.feedSizePrint {
+    width: 100%;
+    height: 55%;
+    margin-top: 300px;
+}
+
+.divTextsFEEDPrint {
+    z-index: 1;
+    position: static;
+    
+    margin-top: -1030px;
+    margin-left: 185px;
+}
+
+.divTextEndFEEDPrint {
+    position: static;
+    margin-left: 25px;
+    z-index: 1;
+}
+
+.divPrincipalPrintFEED {
+    width: 1080px;
+    height: 1080px;
+    margin: 0vw;
+}
+
+.imagePrincipalPrintFEED {
+    width: 1080px;
+    height: 1080px;
+}
+
+
+/* MOBILE */
+.principalDivImageInfoMobile {
+    text-align: center;
+    width: 100%;
+}
+
+.divInfoMobile {
+    margin: auto;
+}
+
+.storieSizeMobile {
+    width: 60vw;
+    height: auto;
+    margin-top: 45vw;
+}
+
+.feedSizeMobile {
+    width: 60vw;
+    height: auto;
+    margin-top: 70vw;
+}
+
+.divPrincipalSTORIEMobile {
+    width: 60vw;
+    height: auto;
+    margin: auto;
+}
+
+.divTextsMobile {
+    z-index: 1;
+    position: absolute;
+    top: 4.2vw;
+    margin-left: 5.5vw;
+    z-index: 1;
+ }
+ 
+.divTextsFEEDMobile {
+    z-index: 1;
+    position: absolute;
+    top: 30vw;
+    margin-left: 5.5vw;
+    z-index: 1;
+}
+
+/* TEXT AREA */
+textarea:focus, input:focus{
+    outline: none;
+}
+*:focus {
+    outline: none;
+}
+
+textarea:focus ~ .floating-labelTextArea,
+textarea:not(:focus):valid ~ .floating-labelTextArea {
+  top: 33vw;
+  bottom: 10px;
+  font-size: 1vw;
+}
+
+.inputTextAreaComentario {
+  font-size: 1.2vw;
+  width: 89vw;
+  height: 15vw;
+  height: auto;
+}
+
+.floating-labelTextArea {
+  position: absolute;
+  pointer-events: none;
+  top: 31vw;
+  font-size: 1.2vw;
+  transition: 0.2s ease all;
+}
+
+.floating-label-mobile-TextArea {
+  position: absolute;
+  pointer-events: none;
+  top: 120vw;
+  font-size: 4.5vw;
+  transition: 0.2s ease all;
+}
+
+textarea:focus ~ .floating-label-mobile-TextArea,
+textarea:not(:focus):valid ~ .floating-label-mobile-TextArea {
+  top: 130vw;
+  bottom: 10px;
+  font-size: 3vw;
+}
+
+.inputTextAreaComentario {
+    box-shadow:none !important;
+}
+
+input:focus ~ .floatinglabelNomeComentario,
+input:not(:focus):valid ~ .floatinglabelNomeComentario {
+    top: 28.5vw;
+    bottom: 10px;
+    font-size: 1vw;
+    left: 3.5vw;
+}
+
+.floatinglabelNomeComentario {
+  position: absolute;
+  pointer-events: none;
+  top: 26.5vw;
+  font-size: 1vw;
+  transition: 0.2s ease all;
+  left: 3.5vw;
+}
+
+.inputTextComentar {
+    font-size: 1vw;
+    height: auto;
+}
+
+.inputTextComentar {
+    box-shadow:none !important;
+}
+
+/* MOBILE */
+input:focus ~ .floatinglabelNomeComentarioMobile,
+input:not(:focus):valid ~ .floatinglabelNomeComentarioMobile {
+    top: 90.5vw;
+    bottom: 10px;
+    font-size: 3vw;
+    left: 8.5vw;
+}
+
+.floatinglabelNomeComentarioMobile {
+  position: absolute;
+  pointer-events: none;
+  top: 84.5vw;
+  font-size: 3vw;
+  transition: 0.2s ease all;
+  left: 8.5vw;
+}
+
+.inputTextComentarMobile {
+    font-size: 3vw;
+    height: auto;
+}
+
+.inputTextComentarMobile {
+    box-shadow:none !important;
+}

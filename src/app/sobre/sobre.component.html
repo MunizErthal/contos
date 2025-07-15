@@ -1,0 +1,35 @@
+<div id="introAnim" #introAnim [style.margin-top]="mobileMenu ? '18vw' : '10vw'" style="opacity: 0; margin-left: 5vw; min-height: 100%;">
+    <div style="margin-bottom: 2vw;">
+        <div>
+            <div style="margin: autor;">
+                <label class="currentFont" [style.font-size]="mobileMenu ? '6vw' : '2.1vw'" style="color: #fff;">SOBRE</label>
+            </div>
+        </div>
+
+        <!-- WEB -->
+        <div *ngIf="!mobileMenu" style="margin-top: 1vw;">
+            <div style="margin: auto; width: 80%; margin-left: 2vw; display: inline-grid;">
+                <label class="currentFont" style="color: #fff; font-size: 1.4vw;">Gaúcho nerd de 26 anos, guitarrista frustrado, jogador de RPG viciado, e leitor com tantos livros pra ler, que deveria estar fazendo isso agora. </label>
+                <label class="currentFont" style="margin-top: 3vw; color: #fff; font-size: 1.4vw;">Amante do cinema, de histórias em quadrinhos e de video games, mas minha noiva linda não tem ciúmes (Eu acho...)</label>
+                <div class="currentFont" style="display: flex; width: 110%;">
+                    <label style=" width: 70%; margin-top: 3vw; color: #fff; font-size: 1.4vw;">Formado em Ciência da Computação, profissão exercida pois preciso pagar minhas contas, enquanto corro, no pouco tempo que me resta, em busca de realizar meu sonho de contar histórias para o mundo.</label>
+                    <div class="profilePic"></div>
+                </div>
+                <img style="width: 20vw; height: auto; margin-left: 45vw; margin-top: -8vw;" src="./../../assets/images/seta.png"> 
+            </div>
+        </div>
+
+        <!-- MOBILE -->
+        <div *ngIf="mobileMenu" style="margin-top: 5vw;">
+            <div style="margin: auto; width: 90%; margin-left: 2vw; display: inline-grid;">
+                <label class="currentFont" style="color: #fff; font-size: 4vw; text-align: justify;">Gaúcho nerd de 26 anos, guitarrista frustrado, jogador de RPG viciado, e leitor com tantos livros pra ler, que deveria estar fazendo isso agora. </label>
+                <label class="currentFont" style="margin-top: 5vw; color: #fff; font-size: 4vw; text-align: justify;">Amante do cinema, de histórias em quadrinhos e de video games, mas minha noiva linda não tem ciúmes (Eu acho...)</label>
+                <label class="currentFont" style=" width: 100%; margin-top: 5vw; color: #fff; font-size: 4vw; text-align: justify;">Formado em Ciência da Computação, profissão exercida pois preciso pagar minhas contas, enquanto corro, no pouco tempo que me resta, em busca de realizar meu sonho de contar histórias para o mundo.</label>
+                <div style="display: flex; margin-top: 5vw; width: 100%;">
+                    <img style="margin: auto; float: left; width: auto; height: 12vh; margin-top: 20vw;" src="./../../assets/images/seta.png"> 
+                    <div class="profilePicMobile"></div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>

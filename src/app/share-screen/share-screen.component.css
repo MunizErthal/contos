@@ -1,0 +1,306 @@
+@keyframes entrarShare {
+    0% {top:150%;}
+    100% {top:55%;}
+}
+
+@keyframes sairShare {  
+    0% {top:55%;}
+    100% {top:150%;}
+}
+
+/* FALTA FAZER MOBILE */
+@keyframes sairShareMobile {  
+    0% {top:105vw;}
+    100% {top:120%;}
+}
+
+@keyframes entrarShareMobile {
+    0% {top:120%;}
+    100% {top:105vw;}
+}
+
+.shareOpen {
+    -webkit-animation: entrarShare 1s;
+    animation: entrarShare 1s;
+    animation-direction: normal;
+}
+
+.shareOpenMobile {
+    -webkit-animation: entrarShareMobile 1s;
+    animation: entrarShareMobile 1s;
+    animation-direction: normal;
+}
+
+.share {
+    top:55%;
+}
+
+.shareClose {
+    -webkit-animation: sairShare 0.5s;
+    animation: sairShare 0.5s;
+    animation-direction: normal;
+}
+
+/* FALTA FAZER MOBILE */
+.shareMobile {
+    top: 105vw;
+}
+.shareCloseMobile {
+    -webkit-animation: sairShareMobile 0.5s;
+    animation: sairShareMobile 0.5s;
+    animation-direction: normal;
+}
+
+.shareHidden {
+    top:150%;
+}
+
+.selector {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+ }
+
+.limitError {
+    color: red !important;
+}
+
+.limitErrorMobile {
+    color: red !important;
+}
+
+/* STORIE */
+.divPrincipalSTORIE {
+    width: 22vw;
+    height: 38.5vw;
+    margin: 0vw;
+    margin-left: 0.5vw;
+    margin-top: 0.5vw;
+}
+
+.storieSize {
+    width: 100%;
+    height: 100%;
+}
+
+.divTexts {
+    z-index: 1;
+    position: absolute;
+    top: 4.2vw;
+    margin-left: 3.9vw;
+    z-index: 1;
+ }
+
+.feedTextTypeSelect {
+    font-size: 0.8vw;
+    width: 12.2vw;
+    height: auto;
+    text-align: justify;
+    border: solid 1px;
+    padding: 1vw;
+}
+
+.divTextEnd {
+    position: absolute;
+    bottom: 0;
+    margin-left: 3.9vw;
+    z-index: 1;
+}
+
+.principalDivImageInfo {
+    width: 60%;
+}
+
+.pNameClass {
+    text-align: right;
+    font-size: 0.9vw;
+}
+
+/* PRINT */
+.divPrincipalPrintSTORIE {
+    width: 1080px;
+    height: 1920px;
+    margin: 0vw;
+}
+
+.imagePrincipalPrintSTORIE {
+    width: 1080px;
+    height: 1920px;
+}
+
+.divTextsPrint {
+    z-index: 1;
+    position: static;
+    margin-top: -1780px;
+    margin-left: 185px;
+ }
+
+.textTypeSelectPrint {
+    font-size: 250%;
+    width: 591px;
+    height: auto;
+    text-align: justify;
+    border: solid 3px;
+    padding: 57px;
+}
+
+.divTextEndPrint {
+    position: static;
+    z-index: 1;
+    margin-left: 25px;
+}
+
+.pNameClassPrint {
+    text-align: right;
+    font-size: 250%;
+    margin-top: -35px;
+    margin-right: 180px;
+}
+
+.leiaMaisClassPrint {
+    text-align: center;
+    font-size: 425%;
+}
+
+.pSiteClassPrint {
+    font-size: 450%;
+    text-align: center;
+    margin-bottom: -75px;
+    margin-top: 150px;
+}
+
+/* FEED */
+.feedSize {
+    width: 100%;
+    height: 55%;
+    margin-top: 10vw;
+}
+
+.divTextsFEED {
+    z-index: 1;
+    position: absolute;
+    top: 12.2vw;
+    margin-left: 3.9vw;
+    z-index: 1;
+ }
+
+.divTextEndFEED {
+    position: absolute;
+    bottom: 7vw;
+    margin-left: 3.9vw;
+    z-index: 1;
+}
+
+/* FEED PRINT */
+.feedSizePrint {
+    width: 100%;
+    height: 55%;
+    margin-top: 300px;
+}
+
+.divTextsFEEDPrint {
+    z-index: 1;
+    position: static;
+    
+    margin-top: -1030px;
+    margin-left: 185px;
+}
+
+.divTextEndFEEDPrint {
+    position: static;
+    margin-left: 25px;
+    z-index: 1;
+}
+
+.divPrincipalPrintFEED {
+    width: 1080px;
+    height: 1080px;
+    margin: 0vw;
+}
+
+.imagePrincipalPrintFEED {
+    width: 1080px;
+    height: 1080px;
+}
+
+
+/* MOBILE */
+.principalDivImageInfoMobile {
+    text-align: center;
+    width: 100%;
+}
+
+.divInfoMobile {
+    margin: auto;
+}
+
+.storieSizeMobile {
+    width: 60vw;
+    height: auto;
+    margin-top: 45vw;
+}
+
+.feedSizeMobile {
+    width: 60vw;
+    height: auto;
+    margin-top: 70vw;
+}
+
+.divPrincipalSTORIEMobile {
+    width: 60vw;
+    height: auto;
+    margin: auto;
+}
+
+.storieTextTypeSelectMobile {
+    font-size: 2.5vw;
+    width: 41vw;
+    height: auto;
+    text-align: justify;
+    border: solid 1px;
+    padding: 4vw;
+    margin-top: 46vw;
+}
+
+.feedTextTypeSelectMobile {
+    font-size: 2.5vw;
+    width: 41vw;
+    height: auto;
+    text-align: justify;
+    border: solid 1px;
+    padding: 4vw;
+    margin-top: 45vw;
+}
+
+.divTextsMobile {
+    z-index: 1;
+    position: absolute;
+    top: 4.2vw;
+    margin-left: 5.5vw;
+    z-index: 1;
+ }
+ 
+ .divTextsFEEDMobile {
+     z-index: 1;
+     position: absolute;
+     top: 30vw;
+     margin-left: 5.5vw;
+     z-index: 1;
+  }
+  
+.pNameClassMobile {
+    font-size: 2.7vw;
+    text-align: right;
+}
+
+.pNameClassPrintMobile {
+    text-align: right;
+    font-size: 250%;
+    margin-top: -35px;
+    margin-right: 180px;
+}
