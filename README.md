@@ -3,7 +3,7 @@
 **Personal website to publish my short stories and flash fiction.**  
 Built using modern web technologies for performance, scalability, and ease of publishing.
 
-![Home page screenshot](assets/images/screenshot-home.png)
+![Home page screenshot](assets/images/github/screenshot-home.png)
 
 ---
 
