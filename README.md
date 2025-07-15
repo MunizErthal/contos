@@ -2,6 +2,7 @@
 
 **Personal website to publish my short stories and flash fiction.**  
 Built using modern web technologies for performance, scalability, and ease of publishing.
+[🌐 Check out my short story site](https://contosdofernando.com)
 
 ![Home page screenshot](src/assets/images/github/screenshot-home.png)
 
@@ -27,3 +28,7 @@ Built using modern web technologies for performance, scalability, and ease of pu
 - 📬 **Contact section via email** – Readers can get in touch through a contact form or email
 - 🌗 **Dark and light reading modes** – Switch between light and dark themes for better reading experience
 - 📤 **Shareable stories** – Stories and selected excerpts can be shared by readers with images to social medias
+
+---
+
+<a href="https://fernandome.com" target="_blank">🌐 Portfólio</a>
