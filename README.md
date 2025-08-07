@@ -3,6 +3,8 @@
 **Personal website to publish my short stories and flash fiction.**  
 Built using modern web technologies for performance, scalability, and ease of publishing.
 
+> 🗓️ **Project developed in 2021**
+
 [🌐 Check out my short story site](https://contosdofernando.com)
 
 ![Home page screenshot](src/assets/images/github/screenshot-home.png)
