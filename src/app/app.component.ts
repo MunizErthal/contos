@@ -1,11 +1,8 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { SearchEventService } from 'src/shared/service/search-event.service';
-import { map, filter, mergeMap } from 'rxjs/operators';
 import { SEOService } from 'src/shared/service/SEOService.service';
 import { FirestoreService } from 'src/shared/service/firestore.service';
-import { ContoModel } from 'src/shared/model/conto.model';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -55,7 +52,7 @@ export class AppComponent {
       });
     }
 
-    setTimeout(af => {
+    setTimeout(() => {
       this.setCurrentRoute();
     }, 500);
   }
@@ -130,6 +127,7 @@ export class AppComponent {
         document.getElementById("contosMenu").style.fontSize = "0vw";
         document.getElementById("pesquisarInputId").style.width = "0%";
         document.getElementById("navbar").style.height = "4vw";
+        document.getElementById("logo").classList.add("shrink");
       } else {
         document.getElementById("pesquisarId").style.fontSize = "1.3vw";
         document.getElementById("minicontosMenu").style.fontSize = "1.3vw";
@@ -137,6 +135,7 @@ export class AppComponent {
         document.getElementById("contosMenu").style.fontSize = "1.3vw";
         document.getElementById("pesquisarInputId").style.width = "100%";
         document.getElementById("navbar").style.height = "7vw";
+        document.getElementById("logo").classList.remove("shrink");
       }
     }
   }

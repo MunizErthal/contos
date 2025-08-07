@@ -12,11 +12,8 @@ import { LeituraModule } from './leitura/leitura.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
-import { FirestoreService } from 'src/shared/service/firestore.service';
-import { FormspreeService } from 'src/shared/service/formspree.service';
 import { SobreModule } from './sobre/sobre.module';
 import { PesquisaModule } from './pesquisa/pesquisa.module';
-import { ContoModel } from 'src/shared/model/conto.model';
 import { ContosModule } from './contos/contos.module';
 import { BlogModule } from './blog/blog.module';
 import { MinicontosModule } from './minicontos/minicontos.module';
@@ -52,7 +49,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     ContosModule,
     SobreModule,
     EscrevendoModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),    
+    AngularFireModule.initializeApp(environment.firebase),    
     AngularFireDatabaseModule,
     HammerModule
   ],

@@ -1,8 +1,11 @@
 <div *ngIf="!getInfos && !animacaoIntro" style="margin-top: 1vw;" #contos id="contos">.</div>
 <div *ngIf="!getInfos && !animacaoIntro" style="margin-top: 7vw;"></div>
 
-<div *ngIf="animacaoIntro" [style.margin-top]="mobileMenu ? '25vh' : '45vh'" class="selector" style="text-align: center; margin: auto; margin-top: 25vh;"> 
-    <label id="welcomePt1" [style.width]="mobileMenu ? '' : '100%'" class="currentFont selector" [style.font-size]="mobileMenu ? '12vw' : '4.1vw'" #welcomePt1 style="opacity: 0; color: white; margin: auto;">Bem-vindos</label>
+<div *ngIf="animacaoIntro" [style.margin-top]="mobileMenu ? '25vh' : '30vh'" class="selector" style="text-align: center; margin: auto; margin-top: 25vh;"> 
+    <div id="welcomePt1" #welcomePt1 style="opacity: 0; display: flex; flex-direction: column;">
+        <img [class]="mobileMenu ? 'logoMobile' : 'logoWeb'" src="./../../assets/images/logo.png"/>
+        <label [style.width]="mobileMenu ? '' : '100%'" class="currentFont selector" [style.font-size]="mobileMenu ? '12vw' : '4.1vw'" style="color: white; margin: auto;">Bem-vindos</label>
+    </div>
     <label id="welcomePt2" [style.width]="mobileMenu ? '70%' : '100%'" class="currentFont selector" [style.font-size]="mobileMenu ? '7vw' : '2.1vw'" #welcomePt2 style="opacity: 0; color: white; margin: auto;">a minha imaginação</label>
 </div>
 

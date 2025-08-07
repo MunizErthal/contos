@@ -1,7 +1,10 @@
 <nav (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" id="navbar" style="display: flex; background-color: #ffffff;" class="navbar fixed-top navbar-light bg-light animClose">
+    <div id="logoDiv" (click)="changeMenu(1)">
+        <img id="logo" #logo [class]="mobileMenu ? 'logoMobile' : 'logoWeb'" src="./../../assets/images/logo.png"/>
+    </div>
     <div (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" class="navMin" id="navPt1" style="display: block; float: left; min-height: 6vw !important;" [style.margin-top]="mobileMenu ? 'auto': ''">
         <div (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)">
-            <a (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" class="currentFont navbar-brand" [style.font-size]="mobileMenu ? '4.8vw' : '1.8vw'" style="float: right; cursor: pointer; color: black; " [style.padding-top]="mobileMenu ? '' : '0'" ngxScrollTo [ngxScrollToOffset]="-9999" (click)="changeMenu(1)">FERNANDO MUNIZ ERTHAL</a>
+            <a (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" class="currentFont navbar-brand" [style.font-size]="mobileMenu ? '4.8vw' : '1.8vw'" style="float: right; cursor: pointer; color: black; " ngxScrollTo [ngxScrollToOffset]="-9999" (click)="changeMenu(1)">FERNANDO MUNIZ ERTHAL</a>
         </div>
         <div *ngIf="showMenus && !mobileMenu">
             <a class="navbar-brand opcao animClose currentFont" style="margin-left: 1vw; font-size: 1.3vw;" id="contosMenu" (click)="goContos()" #contosMenu>CONTOS</a>

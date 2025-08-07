@@ -301,3 +301,17 @@
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+.logoWeb {
+    width: 10vw;
+    height: auto;
+    margin: auto;
+    margin-bottom: -2vw;
+}
+
+.logoMobile {
+    width: 40vw;
+    height: auto;
+    margin: auto;
+    margin-bottom: -2vw;
+}
