@@ -12,7 +12,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    //SweetAlert2Module.forRoot(),
+    SweetAlert2Module
   ],
   exports: [InfoComponent]
 })

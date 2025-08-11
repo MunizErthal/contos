@@ -20,7 +20,7 @@ import { InfoModule } from '../info/info.module';
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,
-    //SweetAlert2Module.forRoot(),
+    SweetAlert2Module,
     InfoModule
   ]
 })
