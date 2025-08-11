@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EscrevendoComponent } from './escrevendo.component';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+//import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { InfoModule } from '../info/info.module';
@@ -13,7 +13,7 @@ import { InfoModule } from '../info/info.module';
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,   
-    AngularFireDatabaseModule,
+    //AngularFireDatabaseModule,
     InfoModule
   ]
 })

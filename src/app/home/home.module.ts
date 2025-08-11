@@ -12,10 +12,10 @@ import { InfoModule } from '../info/info.module';
     CommonModule,
     FormsModule,
     BrowserModule, 
-    BrowserAnimationsModule,
     ReactiveFormsModule,
+    HammerModule,
+    //BrowserAnimationsModule,
     InfoModule,
-    HammerModule
   ]
 })
 export class HomeModule { }

@@ -15,7 +15,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SweetAlert2Module.forRoot()
+    //SweetAlert2Module.forRoot()
   ]
 })
 export class ContatoModule { }

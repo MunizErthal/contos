@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BlogComponent } from './blog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+//import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { InfoModule } from '../info/info.module';
 
 
@@ -15,7 +15,7 @@ import { InfoModule } from '../info/info.module';
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,   
-    AngularFireDatabaseModule,
+    //AngularFireDatabaseModule,
     InfoModule
   ]
 })

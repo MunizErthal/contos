@@ -4,7 +4,7 @@ import { PesquisaComponent } from './pesquisa.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+//import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { InfoModule } from '../info/info.module';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { InfoModule } from '../info/info.module';
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,   
-    AngularFireDatabaseModule,
+    //AngularFireDatabaseModule,
     InfoModule
   ]
 })

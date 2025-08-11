@@ -177,7 +177,7 @@ export class LeituraComponent implements OnInit, OnDestroy {
           this.fireStoreService.edit(this.readInfo, this.currentReadInfoId);
 
           // Salvar como lido + 1
-          this.fireStoreService.getCapa(this.readInfo.contoId, this.readInfo.contoType).subscribe(res => {
+          this.fireStoreService.getCapa(this.readInfo.contoId, this.readInfo.contoType).then(res => {
             let conto: ContoModel = res.data() as ContoModel;
             if (conto !== null && conto !== undefined) {
               this.fireStoreService.updateLeitura(this.conto.capa.id, this.contoType, conto.leituras + 1);
@@ -224,7 +224,7 @@ export class LeituraComponent implements OnInit, OnDestroy {
     if (this.liberarCurtir) {
       // Salvar curtida + 1
       this.liberarCurtir = false;
-      this.fireStoreService.getCapa(this.readInfo.contoId, this.readInfo.contoType).subscribe(res => {
+      this.fireStoreService.getCapa(this.readInfo.contoId, this.readInfo.contoType).then(res => {
         let conto: ContoModel = res.data() as ContoModel;
         if (conto !== null && conto !== undefined) {
           this.fireStoreService.updateCurtida(this.conto.capa.id, this.contoType, conto.curtidas + 1);
@@ -331,7 +331,7 @@ export class LeituraComponent implements OnInit, OnDestroy {
     }
 
     this.urlCopy = 'https://www.fernandome.com.br/leitura/' + contoType + '/' + contoId;
-    this.fireStoreService.getLeituraById(contoId, contoType).subscribe(res => {
+    this.fireStoreService.getLeituraById(contoId, contoType).then(res => {
       this.conto = res.data();
 
       if (this.conto !== null && this.conto !== undefined) {
@@ -609,7 +609,7 @@ export class LeituraComponent implements OnInit, OnDestroy {
   }
 
   loadInfosLink(contoType, contoId) {
-    this.fireStoreService.getCapa(contoId, contoType).subscribe(res => {
+    this.fireStoreService.getCapa(contoId, contoType).then(res => {
       let conto: ContoModel = res.data() as ContoModel;
       
       // Inserir infos de contos lincados

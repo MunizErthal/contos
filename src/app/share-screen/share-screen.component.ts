@@ -193,20 +193,24 @@ export class ShareScreenComponent implements OnInit, OnChanges {
     }
   }
 
-  download(imageSrc) {
-    const blobData = this.convertBase64ToBlobData(imageSrc.split('base64,')[1]);
-    let downloadName = this.contoId + '-fernandome-' + new Date().getTime();
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) { //IE
-      window.navigator.msSaveOrOpenBlob(blobData, downloadName);
-    } else { // chrome
-      const blob = new Blob([blobData], { type: 'image/png' });
+  download(imageSrc: string) {
+    try {
+      const base64 = imageSrc.split('base64,')[1];
+      const blob = this.convertBase64ToBlobData(base64, 'image/png');
       const url = window.URL.createObjectURL(blob);
-      
+      const downloadName = `${this.contoId}-fernandome-${Date.now()}.png`;
+
       const link = document.createElement('a');
       link.href = url;
       link.download = downloadName;
+      document.body.appendChild(link); // Necessário para Firefox
       link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
       this.close('compartilhar');
+    } catch (e) {
+      console.error('Erro ao baixar imagem:', e);
     }
   }
 

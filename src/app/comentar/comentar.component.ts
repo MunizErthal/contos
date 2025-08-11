@@ -23,7 +23,7 @@ export class ComentarComponent implements OnInit, OnChanges {
 
   comentario = '';
   nome = '';
-  showAll = '';
+  showAll;
 
   constructor(private fireStoreService: FirestoreService) {
     if (navigator.userAgent.match(/Android/i)

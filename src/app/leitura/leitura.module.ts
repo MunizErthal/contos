@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShareScreenModule } from '../share-screen/share-screen.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ComentarModule } from '../comentar/comentar.module';
-import { MomentModule } from 'ngx-moment';
 import { InfoModule } from '../info/info.module';
 
 @NgModule({
@@ -18,11 +17,10 @@ import { InfoModule } from '../info/info.module';
     ReactiveFormsModule,
     ShareScreenModule,
     ComentarModule,
-    MomentModule,
-    SweetAlert2Module.forRoot(),
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,
+    //SweetAlert2Module.forRoot(),
     InfoModule
   ]
 })

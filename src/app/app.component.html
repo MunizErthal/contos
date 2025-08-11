@@ -4,7 +4,7 @@
     </div>
     <div (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" class="navMin" id="navPt1" style="display: block; float: left; min-height: 6vw !important;" [style.margin-top]="mobileMenu ? 'auto': ''">
         <div (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)">
-            <a (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" class="currentFont navbar-brand" [style.font-size]="mobileMenu ? '4.8vw' : '1.8vw'" style="float: right; cursor: pointer; color: black; " ngxScrollTo [ngxScrollToOffset]="-9999" (click)="changeMenu(1)">FERNANDO MUNIZ ERTHAL</a>
+            <a (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" class="currentFont navbar-brand" [style.font-size]="mobileMenu ? '4.8vw' : '1.8vw'" style="float: right; cursor: pointer; color: black; " (click)="changeMenu(1)">FERNANDO MUNIZ ERTHAL</a>
         </div>
         <div *ngIf="showMenus && !mobileMenu">
             <a class="navbar-brand opcao animClose currentFont" style="margin-left: 1vw; font-size: 1.3vw;" id="contosMenu" (click)="goContos()" #contosMenu>CONTOS</a>
@@ -14,12 +14,12 @@
     </div>
     <div *ngIf="!mobileMenu" id="navPt2" style="margin: auto; margin-right: 0vw; min-height: 6vw !important;">
         <div style="margin: auto; margin-right: 0vw;">
-            <a (click)="changeMenu(4)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="escrevendoMenu" ngxScrollTo [ngxScrollToOffset]="-9999" #escrevendoMenu>ESCREVENDO</a>
-            <a (click)="changeMenu(3)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="contatoMenu" ngxScrollTo [ngxScrollToOffset]="-9999" #contatoMenu>CONTATO</a>
-            <a (click)="changeMenu(2)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="sobreMenu" ngxScrollTo [ngxScrollToOffset]="-9999" #sobreMenu>SOBRE</a>
-            <a (click)="changeMenu(1)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="homeMenu" ngxScrollTo [ngxScrollToOffset]="-9999" #homeMenu>HOME</a>
+            <a (click)="changeMenu(4)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="escrevendoMenu"#escrevendoMenu>ESCREVENDO</a>
+            <a (click)="changeMenu(3)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="contatoMenu"#contatoMenu>CONTATO</a>
+            <a (click)="changeMenu(2)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="sobreMenu" #sobreMenu>SOBRE</a>
+            <a (click)="changeMenu(1)" class="navbar-brand opcao currentFont" style="float: right; font-size: 1.3vw;" id="homeMenu" #homeMenu>HOME</a>
         </div>
-        <div *ngIf="showMenus" (click)="changeMenu(5)" ngxScrollTo [ngxScrollToOffset]="-9999" style="float: left; margin-top: 1vw; width: 97%;">
+        <div *ngIf="showMenus" (click)="changeMenu(5)" style="float: left; margin-top: 1vw; width: 97%;">
             <input id="pesquisarInputId" required (input)="changeSearchParam()" (focusout)="exitSearchParam()" [(ngModel)]="searchParam" class="currentFont inputText animClose" type="text" name="searchParam" style="float: right; font-size: 1.3vw; color: black; background: transparent; border: none; border-bottom: 1px solid #000000; margin: auto;">
             <span id="pesquisarId" style="color: black; font-size: 1.3vw;" class="currentFont floating-label animClose">PESQUISAR</span>
         </div>
@@ -34,11 +34,11 @@
         <span></span>
         
         <ul #menu id="menu">
-            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(1)" ngxScrollTo [ngxScrollToOffset]="-9999"><li style="font-size: 4vw;" id="homeMenu" #homeMenu>HOME</li></a>
-            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(2)" ngxScrollTo [ngxScrollToOffset]="-9999"><li style="font-size: 4vw;" id="sobreMenu" #sobreMenu>SOBRE</li></a>
-            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(3)" ngxScrollTo [ngxScrollToOffset]="-9999"><li style="font-size: 4vw;" id="contatoMenu" #contatoMenu>CONTATO</li></a>
-            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(4)" ngxScrollTo [ngxScrollToOffset]="-9999"><li style="font-size: 4vw;" id="escrevendoMenu" #escrevendoMenu>ESCREVENDO</li></a>
-            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(5)" ngxScrollTo [ngxScrollToOffset]="-9999"><li style="font-size: 4vw;" id="pesquisarMenu" #pesquisarMenu>PESQUISAR</li></a>
+            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(1)"><li style="font-size: 4vw;" id="homeMenu" #homeMenu>HOME</li></a>
+            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(2)"><li style="font-size: 4vw;" id="sobreMenu" #sobreMenu>SOBRE</li></a>
+            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(3)"><li style="font-size: 4vw;" id="contatoMenu" #contatoMenu>CONTATO</li></a>
+            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(4)"><li style="font-size: 4vw;" id="escrevendoMenu" #escrevendoMenu>ESCREVENDO</li></a>
+            <a class="currentFont" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)" style="cursor: pointer; margin-right: 10vw;" (click)="changeMenu(5)"><li style="font-size: 4vw;" id="pesquisarMenu" #pesquisarMenu>PESQUISAR</li></a>
         </ul>
     </div>
 </nav>
