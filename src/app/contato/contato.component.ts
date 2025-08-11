@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormspreeService } from 'src/shared/service/formspree.service';
 import Swal from 'sweetalert2';
@@ -17,7 +17,7 @@ export class ContatoComponent implements OnInit {
   email = '';
   mensagem = '';
 
-  public mailForm: FormGroup;
+  public mailForm: UntypedFormGroup;
 
   constructor(private route: Router, private formspreeService: FormspreeService) {
     if (navigator.userAgent.match(/Android/i)
