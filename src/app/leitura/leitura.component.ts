@@ -266,7 +266,7 @@ export class LeituraComponent implements OnInit, OnDestroy {
     var fraseObj = document.getElementById('frase' + index);
     if (fraseObj.className.includes('selectFrase')) {
       let elementIndex = this.idsInSelect.find(element => element.index === index);
-      const indexRemove = this.idsInSelect.indexOf(elementIndex);
+      const indexRemove = this.idsInSelect != undefined ? this.idsInSelect.indexOf(elementIndex) : 0;
       this.idsInSelect.splice(indexRemove, 1);
       fraseObj.className = this.darkMode ? 'darkModeText selector currentFont' : 'dayModeText selector currentFont';
 
@@ -288,10 +288,7 @@ export class LeituraComponent implements OnInit, OnDestroy {
     this.readInfo = {contoId: '', contoType: '', initLong: 0, exitLong: 0, init: '', exit: '', finish: false, finishTime: '', finishLong: 0, timeRead: '', timeExit: ''};
 
     this.changeUrl = false;
-    this.router.events.subscribe((val) => {
-      this.exitConto();
-    });
-
+    
     // Carregar conto
     this.route.queryParams.subscribe(params => {
       let contoId = params['contoId'];
@@ -306,7 +303,9 @@ export class LeituraComponent implements OnInit, OnDestroy {
           this.readInfo.contoType = this.contoType;
               
           // Salvar readInfo vazio no firebase (ESTÁ LENDO)
-          this.currentReadInfoId = 'readinfo--' + this.readInfo.contoId + '-' + this.fireStoreService.saveReadInfo(this.readInfo, this.readInfo.contoId);
+          this.fireStoreService.saveReadInfo(this.readInfo, this.readInfo.contoId).then(data => {
+            this.currentReadInfoId = 'readinfo--' + this.readInfo.contoId + '-' + data;
+          });
           
           this.loadConto(contoId, this.contoType);
         });
@@ -315,7 +314,9 @@ export class LeituraComponent implements OnInit, OnDestroy {
         this.readInfo.contoType = this.contoType;
             
         // Salvar readInfo vazio no firebase (ESTÁ LENDO)
-        this.currentReadInfoId = 'readinfo--' + this.readInfo.contoId + '-' + this.fireStoreService.saveReadInfo(this.readInfo, this.readInfo.contoId);
+        this.fireStoreService.saveReadInfo(this.readInfo, this.readInfo.contoId).then(data => {
+          this.currentReadInfoId = 'readinfo--' + this.readInfo.contoId + '-' + data;
+        });
         
         this.loadConto(contoId, this.contoType);
       }

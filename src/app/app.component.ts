@@ -141,7 +141,9 @@ export class AppComponent {
   }
 
   setCurrentRoute() {
-    if(window.location.href.indexOf('home') >= 0) {
+    if (window.location.href === undefined)
+      this.changeMenu(1);
+    else if(window.location.href.indexOf('home') >= 0) {
       this.changeMenu(1);
     } else if (window.location.href.indexOf('contos') >= 0 || window.location.href.indexOf('conto') >= 0) {
       this.desativarMenuColor();
@@ -312,7 +314,9 @@ export class AppComponent {
   }
 
   verifyCurrentRouteToBackSearch() {
-    if(window.location.href.indexOf('home') >= 0) {
+    if (window.location.href == undefined)
+      return 1;
+    else if(window.location.href.indexOf('home') >= 0) {
       return 1;
     } else if (window.location.href.indexOf('contos') >= 0 || window.location.href.indexOf('conto') >= 0) {
       return -1;

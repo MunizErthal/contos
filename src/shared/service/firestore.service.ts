@@ -6,8 +6,7 @@ import { ComentarioModel } from '../model/comentario.model';
   providedIn: 'root'
 })
 export class FirestoreService {
-  @Inject(Firestore) firestore: Firestore;
-  constructor() { }
+  constructor(private firestore: Firestore) { }
 
   async getLeituraById(contoId: string, contoType: string) {
     if (contoType === 'conto')
@@ -97,7 +96,7 @@ export class FirestoreService {
   }
 
   insertComentario(nome: string, comentario: string, visible: boolean, frase: string, contoId: string, type: string) {
-    let dateNow = new Date().getTime();
+    let dateNow = Date.now().toString();
     let comentarioObj = new ComentarioModel(nome, comentario, !visible, frase, contoId, type, dateNow);
     const docRef = doc(this.firestore, 'comentarios', `comentario-${nome}-${contoId}-${dateNow}`);
     return setDoc(docRef, JSON.parse(JSON.stringify(comentarioObj)));
@@ -115,14 +114,15 @@ export class FirestoreService {
   }
 
   async saveReadInfo(readInfo: any, contoId: string) {
-    let dateNow = new Date().getTime();
-    const docRef = doc(this.firestore, 'readinfo', `readinfo--${contoId}-${dateNow}`);
+    let dateNow = Date.now().toString();
+    var readInfoId = `readinfo--${contoId}-${dateNow}`;
+    const docRef = doc(this.firestore, 'readinfo', readInfoId);
     await setDoc(docRef, JSON.parse(JSON.stringify(readInfo)));
     return dateNow;
   }
 
   async edit(readInfo: any, documentId: string) {
-    let dateNow = new Date().getTime();
+    let dateNow = Date.now().toString();
     const docRef = doc(this.firestore, 'readinfo', documentId);
     await updateDoc(docRef, JSON.parse(JSON.stringify(readInfo)));
     return dateNow;
